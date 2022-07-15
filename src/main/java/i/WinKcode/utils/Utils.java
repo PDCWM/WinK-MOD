@@ -1,16 +1,6 @@
 package i.WinKcode.utils;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.List;
-import java.util.Random;
-
 import com.mojang.authlib.GameProfile;
-
 import i.WinKcode.Main;
 import i.WinKcode.managers.EnemyManager;
 import i.WinKcode.utils.system.Mapping;
@@ -40,6 +30,16 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 
 public class Utils {
 
@@ -105,6 +105,10 @@ public class Utils {
 
 	public static void attack(Entity entity) {
 		Wrapper.INSTANCE.controller().attackEntity(Wrapper.INSTANCE.player(), entity);
+	}
+
+	public static Collection<PotionEffect> getActiveEffects() {
+		return Wrapper.INSTANCE.player().getActivePotionEffects();
 	}
 
 	public static void addEffect(int id, int duration, int amplifier) {

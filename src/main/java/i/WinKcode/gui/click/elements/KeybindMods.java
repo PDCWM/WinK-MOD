@@ -2,10 +2,9 @@ package i.WinKcode.gui.click.elements;
 
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.ComponentType;
-import org.lwjgl.input.Keyboard;
-
 import i.WinKcode.hack.Hack;
 import i.WinKcode.wrappers.Wrapper;
+import org.lwjgl.input.Keyboard;
 
 public class KeybindMods extends Component {
 

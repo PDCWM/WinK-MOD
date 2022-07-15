@@ -1,21 +1,11 @@
 package i.WinKcode.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.annotation.Nullable;
-
 import i.WinKcode.command.Command;
 import i.WinKcode.hack.hacks.visual.ClickGui;
 import i.WinKcode.managers.CommandManager;
 import i.WinKcode.managers.FileManager;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.utils.visual.ColorUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ITabCompleter;
@@ -27,6 +17,14 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class GuiConsole extends GuiScreen implements ITabCompleter

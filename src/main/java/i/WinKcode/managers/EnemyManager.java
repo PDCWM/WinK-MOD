@@ -1,8 +1,8 @@
 package i.WinKcode.managers;
 
-import java.util.ArrayList;
-
 import i.WinKcode.utils.visual.ChatUtils;
+
+import java.util.ArrayList;
 
 public class EnemyManager {
 	

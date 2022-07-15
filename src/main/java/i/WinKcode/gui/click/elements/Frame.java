@@ -1,15 +1,14 @@
 package i.WinKcode.gui.click.elements;
 
-import java.awt.Dimension;
-
 import i.WinKcode.gui.click.ClickGui;
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.ComponentType;
 import i.WinKcode.gui.click.base.Container;
+import i.WinKcode.wrappers.Wrapper;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
-import i.WinKcode.wrappers.Wrapper;
+import java.awt.*;
 
 public class Frame extends Container {
 

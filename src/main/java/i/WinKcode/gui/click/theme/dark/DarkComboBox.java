@@ -1,33 +1,16 @@
 package i.WinKcode.gui.click.theme.dark;
 
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
-import static org.lwjgl.opengl.GL11.GL_LINES;
-import static org.lwjgl.opengl.GL11.GL_LINE_LOOP;
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glColor4f;
-import static org.lwjgl.opengl.GL11.glDisable;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glLineWidth;
-import static org.lwjgl.opengl.GL11.glTranslated;
-import static org.lwjgl.opengl.GL11.glVertex2d;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Point;
-
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.ComponentRenderer;
 import i.WinKcode.gui.click.base.ComponentType;
 import i.WinKcode.gui.click.elements.ComboBox;
 import i.WinKcode.gui.click.theme.Theme;
+import i.WinKcode.utils.visual.GLUtils;
 import org.lwjgl.input.Mouse;
 
-import i.WinKcode.utils.visual.GLUtils;
+import java.awt.*;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class DarkComboBox extends ComponentRenderer {
 

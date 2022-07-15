@@ -1,11 +1,8 @@
 package i.WinKcode.hack.hacks.visual;
 
-import i.WinKcode.hack.HackCategory;
-import org.lwjgl.opengl.GL11;
-
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.managers.HackManager;
-
 import i.WinKcode.utils.Utils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.renderer.GlStateManager;
@@ -16,6 +13,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import org.lwjgl.opengl.GL11;
 
 public class WallHack extends Hack{
     

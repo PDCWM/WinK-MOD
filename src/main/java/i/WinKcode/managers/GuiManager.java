@@ -2,9 +2,11 @@ package i.WinKcode.managers;
 
 import i.WinKcode.gui.click.ClickGui;
 import i.WinKcode.gui.click.base.Component;
+import i.WinKcode.gui.click.elements.*;
 import i.WinKcode.gui.click.listener.CheckButtonClickListener;
 import i.WinKcode.gui.click.listener.ComponentClickListener;
 import i.WinKcode.gui.click.listener.SliderChangeListener;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.visual.GLUtils;
 import i.WinKcode.value.Mode;
@@ -13,13 +15,6 @@ import i.WinKcode.value.types.BooleanValue;
 import i.WinKcode.value.types.DoubleValue;
 import i.WinKcode.value.types.IntegerValue;
 import i.WinKcode.value.types.ModeValue;
-import i.WinKcode.gui.click.elements.CheckButton;
-import i.WinKcode.gui.click.elements.Dropdown;
-import i.WinKcode.gui.click.elements.ExpandingButton;
-import i.WinKcode.gui.click.elements.Frame;
-import i.WinKcode.gui.click.elements.KeybindMods;
-import i.WinKcode.gui.click.elements.Slider;
-import i.WinKcode.hack.Hack;
 
 public class GuiManager extends ClickGui {
 

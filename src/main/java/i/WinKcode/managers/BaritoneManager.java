@@ -5,8 +5,9 @@ import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.Launch;
 
-import java.io.*;
-import java.lang.reflect.Constructor;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;

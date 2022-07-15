@@ -1,12 +1,9 @@
 package i.WinKcode.hack.hacks.combat;
 
-import i.WinKcode.hack.HackCategory;
-import org.lwjgl.input.Mouse;
-
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.managers.EnemyManager;
 import i.WinKcode.managers.FriendManager;
-
 import i.WinKcode.utils.Utils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.entity.Entity;
@@ -14,6 +11,7 @@ import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.lwjgl.input.Mouse;
 
 public class InteractClick extends Hack{
 

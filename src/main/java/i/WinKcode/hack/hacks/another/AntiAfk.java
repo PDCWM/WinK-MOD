@@ -1,7 +1,7 @@
 package i.WinKcode.hack.hacks.another;
 
-import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.TimerUtils;
 import i.WinKcode.value.types.DoubleValue;
 import i.WinKcode.wrappers.Wrapper;

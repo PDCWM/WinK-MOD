@@ -1,34 +1,27 @@
 package i.WinKcode;
 
+import i.WinKcode.gui.GuiConsole;
 import i.WinKcode.gui.click.ClickGuiScreen;
-import i.WinKcode.hack.hacks.visual.ClickGui;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.hacks.another.GhostMode;
+import i.WinKcode.hack.hacks.visual.ClickGui;
 import i.WinKcode.managers.CommandManager;
+import i.WinKcode.managers.HackManager;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.system.Connection;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
-import org.lwjgl.input.Keyboard;
-
-import i.WinKcode.gui.GuiConsole;
-import i.WinKcode.hack.Hack;
-import i.WinKcode.managers.HackManager;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.GuiContainerEvent;
-import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.*;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import org.lwjgl.input.Keyboard;
 
 public class EventsHandler {
 	private boolean initialized = false;

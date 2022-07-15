@@ -1,7 +1,6 @@
 package i.WinKcode.utils;
 
 import com.mojang.authlib.GameProfile;
-
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.MoverType;
 import net.minecraft.util.MovementInput;

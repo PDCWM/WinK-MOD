@@ -1,7 +1,7 @@
 package i.WinKcode.command;
 
-import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.managers.HackManager;
+import i.WinKcode.utils.visual.ChatUtils;
 
 public class Toggle extends Command
 {

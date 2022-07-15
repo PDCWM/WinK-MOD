@@ -1,8 +1,8 @@
 package i.WinKcode.command;
 
-import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.hack.Hack;
 import i.WinKcode.managers.HackManager;
+import i.WinKcode.utils.visual.ChatUtils;
 
 public class Hacks extends Command
 {

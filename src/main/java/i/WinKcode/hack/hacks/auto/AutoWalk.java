@@ -1,7 +1,7 @@
 package i.WinKcode.hack.hacks.auto;
 
-import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;

@@ -1,8 +1,7 @@
 package i.WinKcode.hack.hacks.combat;
 
-import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.Hack;
-
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.TimerUtils;
 import i.WinKcode.utils.system.Connection.Side;
 import i.WinKcode.value.Mode;
