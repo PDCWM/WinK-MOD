@@ -1,17 +1,18 @@
 package i.WinKcode.hack.hacks.another;
 
-import i.WinKcode.hack.Hack;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.Hack;
+
 import i.WinKcode.utils.system.Connection.Side;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
 import joptsimple.internal.Strings;
 import net.minecraft.network.play.client.CPacketTabComplete;
 import net.minecraft.network.play.server.SPacketTabComplete;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class PluginsGetter extends Hack{
     

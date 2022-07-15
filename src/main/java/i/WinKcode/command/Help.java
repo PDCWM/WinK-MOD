@@ -1,7 +1,7 @@
 package i.WinKcode.command;
 
-import i.WinKcode.managers.CommandManager;
 import i.WinKcode.utils.visual.ChatUtils;
+import i.WinKcode.managers.CommandManager;
 
 public class Help extends Command
 {

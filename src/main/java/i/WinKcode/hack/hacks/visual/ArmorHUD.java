@@ -1,7 +1,9 @@
 package i.WinKcode.hack.hacks.visual;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+
+import i.WinKcode.hack.Hack;
+
 import i.WinKcode.value.types.BooleanValue;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.ScaledResolution;

@@ -1,12 +1,12 @@
 package i.WinKcode.gui.click.elements;
 
+import java.util.ArrayList;
+
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.ComponentType;
 import i.WinKcode.gui.click.listener.CheckButtonClickListener;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.types.ModeValue;
-
-import java.util.ArrayList;
 
 public class CheckButton extends Component {
 

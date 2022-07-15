@@ -1,9 +1,13 @@
 package i.WinKcode.managers;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import i.WinKcode.gui.click.ClickGuiScreen;
 import i.WinKcode.gui.click.theme.dark.DarkTheme;
 import i.WinKcode.hack.Hack;
-import i.WinKcode.hack.hacks.TestHack;
+import i.WinKcode.hack.hacks.*;
 import i.WinKcode.hack.hacks.another.*;
 import i.WinKcode.hack.hacks.auto.*;
 import i.WinKcode.hack.hacks.combat.*;
@@ -14,7 +18,15 @@ import i.WinKcode.value.Mode;
 import i.WinKcode.value.Value;
 import i.WinKcode.value.types.ModeValue;
 import i.WinKcode.wrappers.Wrapper;
-import net.minecraftforge.client.event.*;
+import org.lwjgl.input.Keyboard;
+
+import net.minecraftforge.client.event.GuiContainerEvent;
+import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.MouseEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -22,11 +34,6 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.lwjgl.input.Keyboard;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 public class HackManager {
 	

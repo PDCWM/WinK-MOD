@@ -1,16 +1,17 @@
 package i.WinKcode.gui.click;
 
+import java.util.ArrayList;
+
+import javax.vecmath.Vector2f;
+
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.Container;
+import i.WinKcode.gui.click.theme.Theme;
 import i.WinKcode.gui.click.elements.Frame;
 import i.WinKcode.gui.click.elements.Slider;
-import i.WinKcode.gui.click.theme.Theme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-
-import javax.vecmath.Vector2f;
-import java.util.ArrayList;
 
 public class ClickGui extends ClickGuiScreen {
 

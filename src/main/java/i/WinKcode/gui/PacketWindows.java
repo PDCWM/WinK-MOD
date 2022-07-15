@@ -1,10 +1,13 @@
 package i.WinKcode.gui;
 
 import i.WinKcode.utils.system.Connection;
+import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.block.Block;
+import net.minecraft.network.play.server.SPacketBlockChange;
 import net.minecraft.network.play.server.SPacketMultiBlockChange;
 
 import javax.swing.*;
+import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -31,7 +34,7 @@ public class PacketWindows extends JFrame{
         this.jta.append(str);
     }
 
-    public void clearText(){
+    public void removeText(){
         this.jta.setText("");
     }
 

@@ -1,21 +1,5 @@
 package i.WinKcode.managers;
 
-import com.google.common.collect.Maps;
-import com.google.gson.*;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
-import i.WinKcode.hack.Hack;
-import i.WinKcode.skinchanger.CacheRetriever;
-import i.WinKcode.skinchanger.TextureReflection;
-import i.WinKcode.skinchanger.resources.BetterJsonObject;
-import i.WinKcode.utils.Utils;
-import i.WinKcode.utils.visual.ChatUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.network.NetworkPlayerInfo;
-import net.minecraft.client.resources.DefaultPlayerSkin;
-import net.minecraft.util.ResourceLocation;
-import org.apache.commons.io.IOUtils;
-
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,6 +9,28 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import i.WinKcode.skinchanger.CacheRetriever;
+import i.WinKcode.skinchanger.TextureReflection;
+import i.WinKcode.skinchanger.resources.BetterJsonObject;
+import i.WinKcode.utils.Utils;
+import i.WinKcode.utils.visual.ChatUtils;
+import org.apache.commons.io.IOUtils;
+
+import com.google.common.collect.Maps;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
+
+import i.WinKcode.hack.Hack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.client.resources.DefaultPlayerSkin;
+import net.minecraft.util.ResourceLocation;
 
 public class SkinChangerManager {
 	

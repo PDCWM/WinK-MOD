@@ -17,21 +17,27 @@
 
 package i.WinKcode.skinchanger;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.UUID;
+
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
-import i.WinKcode.managers.FileManager;
+
 import i.WinKcode.skinchanger.resources.CapeBuffer;
 import i.WinKcode.skinchanger.resources.LocalFileData;
 import i.WinKcode.skinchanger.resources.SkinBuffer;
 import i.WinKcode.utils.visual.ChatUtils;
+import i.WinKcode.managers.FileManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.util.ResourceLocation;
-
-import java.io.*;
-import java.util.HashMap;
-import java.util.UUID;
 
 /**
  * A class which handles saving and loading files to the SkinChanger cache to save

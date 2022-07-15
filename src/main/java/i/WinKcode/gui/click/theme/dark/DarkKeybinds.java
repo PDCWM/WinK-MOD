@@ -5,10 +5,11 @@ import i.WinKcode.gui.click.base.ComponentRenderer;
 import i.WinKcode.gui.click.base.ComponentType;
 import i.WinKcode.gui.click.elements.KeybindMods;
 import i.WinKcode.gui.click.theme.Theme;
+import org.lwjgl.input.Keyboard;
+
 import i.WinKcode.hack.hacks.visual.ClickGui;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;
-import org.lwjgl.input.Keyboard;
 
 public class DarkKeybinds extends ComponentRenderer {
 

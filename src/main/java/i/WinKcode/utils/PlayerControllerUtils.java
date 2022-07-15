@@ -1,5 +1,7 @@
 package i.WinKcode.utils;
 
+import java.lang.reflect.Field;
+
 import i.WinKcode.utils.system.Mapping;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.Minecraft;
@@ -9,8 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.GameType;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
-import java.lang.reflect.Field;
 
 public class PlayerControllerUtils {
 	

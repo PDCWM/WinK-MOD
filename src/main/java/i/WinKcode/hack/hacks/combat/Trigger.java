@@ -1,7 +1,8 @@
 package i.WinKcode.hack.hacks.combat;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.hacks.combat.AutoShield;
 import i.WinKcode.utils.TimerUtils;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.ValidUtils;

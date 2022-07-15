@@ -1,6 +1,9 @@
 package i.WinKcode.utils;
 
+import java.util.List;
+
 import com.google.common.base.Predicates;
+
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EntitySelectors;
@@ -8,8 +11,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-
-import java.util.List;
 
 public class RayCastUtils {
 	

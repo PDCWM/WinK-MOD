@@ -4,6 +4,7 @@ import i.WinKcode.Main;
 import i.WinKcode.gui.GuiConsole;
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.hacks.visual.ClickGui;
 import i.WinKcode.managers.HackManager;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;

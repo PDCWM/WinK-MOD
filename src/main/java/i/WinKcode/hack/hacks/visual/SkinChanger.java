@@ -1,6 +1,7 @@
 package i.WinKcode.hack.hacks.visual;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
+
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.managers.SkinChangerManager;

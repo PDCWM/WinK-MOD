@@ -1,11 +1,11 @@
 package i.WinKcode.command;
 
+import java.util.ArrayList;
+
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.network.NetworkPlayerInfo;
-
-import java.util.ArrayList;
 
 public class DumpPlayers extends Command
 {

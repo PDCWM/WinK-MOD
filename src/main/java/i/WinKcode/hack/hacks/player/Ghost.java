@@ -1,7 +1,8 @@
 package i.WinKcode.hack.hacks.player;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.Hack;
+
 import i.WinKcode.utils.system.Connection;
 import i.WinKcode.utils.system.Connection.Side;
 import i.WinKcode.value.types.BooleanValue;

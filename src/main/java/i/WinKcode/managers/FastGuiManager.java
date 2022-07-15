@@ -1,9 +1,9 @@
 package i.WinKcode.managers;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.hacks.visual.ClickGui;
 import i.WinKcode.utils.visual.ColorUtils;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.utils.visual.RenderUtils;
 import org.lwjgl.input.Keyboard;
 

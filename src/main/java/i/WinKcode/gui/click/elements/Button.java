@@ -1,11 +1,11 @@
 package i.WinKcode.gui.click.elements;
 
+import java.util.ArrayList;
+
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.ComponentType;
 import i.WinKcode.gui.click.listener.ComponentClickListener;
 import i.WinKcode.hack.Hack;
-
-import java.util.ArrayList;
 
 public class Button extends Component {
 

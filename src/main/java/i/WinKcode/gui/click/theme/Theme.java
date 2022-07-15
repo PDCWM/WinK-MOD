@@ -1,11 +1,11 @@
 package i.WinKcode.gui.click.theme;
 
-import i.WinKcode.gui.click.base.ComponentRenderer;
+import java.util.HashMap;
+
 import i.WinKcode.gui.click.base.ComponentType;
+import i.WinKcode.gui.click.base.ComponentRenderer;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraftforge.client.model.obj.OBJModel.Texture;
-
-import java.util.HashMap;
 
 public class Theme {
 

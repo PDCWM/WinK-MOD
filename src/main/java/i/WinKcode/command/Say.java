@@ -2,6 +2,7 @@ package i.WinKcode.command;
 
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.CPacketChatMessage;
 
 public class Say extends Command

@@ -1,8 +1,8 @@
 package i.WinKcode.command;
 
-import i.WinKcode.managers.FriendManager;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.visual.ChatUtils;
+import i.WinKcode.managers.FriendManager;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class Friend extends Command

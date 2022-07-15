@@ -1,15 +1,16 @@
 package i.WinKcode.hack.hacks.auto;
 
 import i.WinKcode.gui.click.ClickGuiScreen;
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import org.lwjgl.input.Keyboard;
+
+import i.WinKcode.hack.Hack;
 import i.WinKcode.managers.HackManager;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.MobEffects;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-import org.lwjgl.input.Keyboard;
 
 public class AutoSprint extends Hack{
 

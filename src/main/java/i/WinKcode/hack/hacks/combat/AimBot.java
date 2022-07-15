@@ -1,9 +1,10 @@
 package i.WinKcode.hack.hacks.combat;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.ValidUtils;
+import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.types.BooleanValue;
 import i.WinKcode.value.types.DoubleValue;

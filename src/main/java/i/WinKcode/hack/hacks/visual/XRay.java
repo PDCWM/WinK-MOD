@@ -1,5 +1,9 @@
 package i.WinKcode.hack.hacks.visual;
 
+import java.util.LinkedList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.managers.XRayManager;
@@ -8,13 +12,13 @@ import i.WinKcode.utils.TimerUtils;
 import i.WinKcode.utils.system.Connection;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.utils.visual.ColorUtils;
-import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.types.IntegerValue;
 import i.WinKcode.value.types.ModeValue;
 import i.WinKcode.wrappers.Wrapper;
 import i.WinKcode.xray.XRayBlock;
 import i.WinKcode.xray.XRayData;
+import i.WinKcode.utils.visual.RenderUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.ScaledResolution;
@@ -26,10 +30,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-
-import java.util.LinkedList;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class XRay extends Hack {
 

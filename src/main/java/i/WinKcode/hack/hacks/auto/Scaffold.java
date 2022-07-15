@@ -1,8 +1,15 @@
 package i.WinKcode.hack.hacks.auto;
 
-import i.WinKcode.hack.Hack;
+import java.util.Random;
+
 import i.WinKcode.hack.HackCategory;
-import i.WinKcode.utils.*;
+import i.WinKcode.hack.Hack;
+import i.WinKcode.utils.BlockData;
+import i.WinKcode.utils.BlockUtils;
+
+import i.WinKcode.utils.RobotUtils;
+import i.WinKcode.utils.TimerUtils;
+import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.types.ModeValue;
@@ -21,8 +28,6 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 public class Scaffold extends Hack{
 	

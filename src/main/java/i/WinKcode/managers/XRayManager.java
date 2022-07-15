@@ -1,10 +1,10 @@
 package i.WinKcode.managers;
 
+import java.util.LinkedList;
+
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.xray.XRayData;
 import net.minecraft.block.Block;
-
-import java.util.LinkedList;
 
 public class XRayManager {
 	

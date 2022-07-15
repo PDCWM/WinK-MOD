@@ -1,5 +1,10 @@
 package i.WinKcode.gui.click;
 
+import java.io.IOException;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
 import i.WinKcode.gui.Tooltip;
 import i.WinKcode.managers.FileManager;
 import i.WinKcode.utils.Utils;
@@ -7,10 +12,6 @@ import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
-import java.io.IOException;
 
 public class ClickGuiScreen extends GuiScreen {
 

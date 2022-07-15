@@ -1,7 +1,7 @@
 package i.WinKcode.utils;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.hacks.combat.AntiBot;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.managers.EnemyManager;
 import i.WinKcode.managers.FriendManager;
 import i.WinKcode.managers.HackManager;

@@ -1,11 +1,11 @@
 package i.WinKcode.command;
 
-import i.WinKcode.utils.Utils;
-import i.WinKcode.utils.visual.ChatUtils;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Vector;
+
+import i.WinKcode.utils.Utils;
+import i.WinKcode.utils.visual.ChatUtils;
 
 public class DumpClasses extends Command
 {

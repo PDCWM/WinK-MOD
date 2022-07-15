@@ -1,5 +1,9 @@
 package i.WinKcode.hack.hacks.auto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.Utils;
@@ -21,10 +25,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketClickWindow;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class AutoArmor extends Hack{
 

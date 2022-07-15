@@ -1,10 +1,11 @@
 package i.WinKcode.command;
 
+import i.WinKcode.utils.visual.ChatUtils;
+import org.lwjgl.input.Keyboard;
+
 import i.WinKcode.hack.Hack;
 import i.WinKcode.managers.CommandManager;
 import i.WinKcode.managers.HackManager;
-import i.WinKcode.utils.visual.ChatUtils;
-import org.lwjgl.input.Keyboard;
 
 public class Bind extends Command {
 	public Bind() {

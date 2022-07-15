@@ -1,13 +1,14 @@
 package i.WinKcode.hack.hacks.player;
 
-import i.WinKcode.hack.Hack;
+import java.lang.reflect.Field;
+
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.Hack;
+
 import i.WinKcode.utils.system.Mapping;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-
-import java.lang.reflect.Field;
 
 public class AntiWeb extends Hack{
 	

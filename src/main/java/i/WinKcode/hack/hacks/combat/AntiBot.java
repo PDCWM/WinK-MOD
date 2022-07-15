@@ -1,8 +1,12 @@
 package i.WinKcode.hack.hacks.combat;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 import com.mojang.authlib.GameProfile;
-import i.WinKcode.hack.Hack;
+
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.utils.BlockUtils;
 import i.WinKcode.utils.EntityBot;
 import i.WinKcode.utils.Utils;
@@ -19,9 +23,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.network.play.server.SPacketSpawnPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-
-import java.util.ArrayList;
-import java.util.UUID;
 
 public class AntiBot extends Hack{
 	

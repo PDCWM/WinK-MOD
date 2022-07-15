@@ -1,12 +1,12 @@
 package i.WinKcode.hack.hacks.another;
 
-import i.WinKcode.gui.PacketWindows;
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.system.Connection;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.types.BooleanValue;
 import i.WinKcode.value.types.ModeValue;
+import i.WinKcode.gui.PacketWindows;
 import net.minecraft.network.play.client.*;
 
 public class PacketFilter extends Hack {

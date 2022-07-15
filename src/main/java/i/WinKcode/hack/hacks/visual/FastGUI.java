@@ -1,8 +1,8 @@
 package i.WinKcode.hack.hacks.visual;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.managers.FastGuiManager;
+import i.WinKcode.hack.Hack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.input.Keyboard;
 

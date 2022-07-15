@@ -1,27 +1,5 @@
 package i.WinKcode.utils.visual;
 
-import i.WinKcode.hack.hacks.auto.Scaffold;
-import i.WinKcode.hack.hacks.combat.KillAura;
-import i.WinKcode.hack.hacks.visual.ClickGui;
-import i.WinKcode.utils.TimerUtils;
-import i.WinKcode.wrappers.Wrapper;
-import i.WinKcode.xray.XRayBlock;
-import i.WinKcode.xray.XRayData;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import org.lwjgl.opengl.GL11;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.image.*;
@@ -34,6 +12,30 @@ import java.text.DecimalFormatSymbols;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Locale;
+
+import i.WinKcode.hack.hacks.visual.ClickGui;
+import i.WinKcode.hack.hacks.combat.KillAura;
+import i.WinKcode.hack.hacks.auto.Scaffold;
+import i.WinKcode.utils.TimerUtils;
+import i.WinKcode.wrappers.Wrapper;
+import i.WinKcode.xray.XRayBlock;
+import i.WinKcode.xray.XRayData;
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+
+import javax.swing.*;
 
 import static org.lwjgl.opengl.GL11.*;
 

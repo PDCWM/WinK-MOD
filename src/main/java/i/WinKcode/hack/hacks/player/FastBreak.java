@@ -1,7 +1,7 @@
 package i.WinKcode.hack.hacks.player;
 
-import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.utils.BlockUtils;
 import i.WinKcode.utils.PlayerControllerUtils;
 import i.WinKcode.wrappers.Wrapper;
