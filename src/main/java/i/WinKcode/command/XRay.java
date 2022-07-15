@@ -1,10 +1,9 @@
 package i.WinKcode.command;
 
 import i.WinKcode.managers.HackManager;
+import i.WinKcode.managers.XRayManager;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.visual.ChatUtils;
-
-import i.WinKcode.managers.XRayManager;
 import i.WinKcode.wrappers.Wrapper;
 import i.WinKcode.xray.XRayData;
 import net.minecraft.block.Block;

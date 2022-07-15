@@ -19,7 +19,7 @@ package i.WinKcode.skinchanger.resources;
 
 import net.minecraft.client.renderer.IImageBuffer;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**

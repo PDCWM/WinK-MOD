@@ -3,11 +3,7 @@ package i.WinKcode.utils.system;
 import i.WinKcode.EventsHandler;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
-import io.netty.channel.ChannelDuplexHandler;
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPipeline;
-import io.netty.channel.ChannelPromise;
+import io.netty.channel.*;
 
 public class Connection extends ChannelDuplexHandler {
 

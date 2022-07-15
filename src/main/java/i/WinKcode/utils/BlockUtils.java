@@ -1,7 +1,5 @@
 package i.WinKcode.utils;
 
-import java.util.LinkedList;
-
 import i.WinKcode.managers.XRayManager;
 import i.WinKcode.wrappers.Wrapper;
 import i.WinKcode.xray.XRayBlock;
@@ -22,6 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+
+import java.util.LinkedList;
 
 public final class BlockUtils
 {

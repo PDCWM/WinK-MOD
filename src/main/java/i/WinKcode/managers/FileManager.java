@@ -1,19 +1,10 @@
 package i.WinKcode.managers;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
+import com.google.gson.*;
+import i.WinKcode.Main;
 import i.WinKcode.gui.click.ClickGuiScreen;
 import i.WinKcode.gui.click.elements.Frame;
+import i.WinKcode.hack.Hack;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.Value;
 import i.WinKcode.value.types.BooleanValue;
@@ -21,10 +12,13 @@ import i.WinKcode.value.types.DoubleValue;
 import i.WinKcode.value.types.IntegerValue;
 import i.WinKcode.value.types.ModeValue;
 import i.WinKcode.wrappers.Wrapper;
-import i.WinKcode.Main;
-import i.WinKcode.hack.Hack;
 import i.WinKcode.xray.XRayData;
 import net.minecraft.item.Item;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class FileManager { // TODO this class will be rewrite
 

@@ -1,9 +1,9 @@
 package i.WinKcode.command;
 
-import java.awt.Desktop;
-
-import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.managers.FileManager;
+import i.WinKcode.utils.visual.ChatUtils;
+
+import java.awt.*;
 
 public class OpenDir extends Command
 {

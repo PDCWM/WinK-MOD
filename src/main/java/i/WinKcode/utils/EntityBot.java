@@ -1,8 +1,8 @@
 package i.WinKcode.utils;
 
-import java.util.UUID;
-
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.UUID;
 
 public class EntityBot {
 	

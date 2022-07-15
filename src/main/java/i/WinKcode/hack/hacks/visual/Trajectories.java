@@ -1,29 +1,18 @@
 package i.WinKcode.hack.hacks.visual;
 
-import i.WinKcode.hack.HackCategory;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-
 import i.WinKcode.hack.Hack;
-
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemEgg;
-import net.minecraft.item.ItemEnderPearl;
-import net.minecraft.item.ItemFishingRod;
-import net.minecraft.item.ItemLingeringPotion;
-import net.minecraft.item.ItemPotion;
-import net.minecraft.item.ItemSnowball;
-import net.minecraft.item.ItemSplashPotion;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL13;
 
 public class Trajectories extends Hack{
 	

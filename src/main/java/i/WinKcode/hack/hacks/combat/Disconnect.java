@@ -1,7 +1,7 @@
 package i.WinKcode.hack.hacks.combat;
 
-import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.value.types.DoubleValue;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.GuiMainMenu;

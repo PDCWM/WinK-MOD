@@ -2,7 +2,6 @@ package i.WinKcode.hack.hacks.player;
 
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
-
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.types.ModeValue;
 import i.WinKcode.wrappers.Wrapper;

@@ -1,17 +1,11 @@
 package i.WinKcode.gui.click.base;
 
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glBlendFunc;
-import static org.lwjgl.opengl.GL11.glDisable;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glVertex3f;
-
-import java.awt.Color;
-
 import i.WinKcode.gui.click.theme.Theme;
-
 import i.WinKcode.utils.visual.GLUtils;
+
+import java.awt.*;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public abstract class ComponentRenderer {
 

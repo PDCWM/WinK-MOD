@@ -1,7 +1,7 @@
 package i.WinKcode.hack.hacks.another;
 
-import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.managers.PickupFilterManager;
 import i.WinKcode.value.types.BooleanValue;
 import net.minecraft.item.Item;

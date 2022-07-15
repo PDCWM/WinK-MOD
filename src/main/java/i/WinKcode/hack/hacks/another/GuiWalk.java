@@ -1,16 +1,14 @@
 package i.WinKcode.hack.hacks.another;
 
 import i.WinKcode.gui.click.ClickGuiScreen;
-import i.WinKcode.hack.HackCategory;
-import org.lwjgl.input.Keyboard;
-
 import i.WinKcode.hack.Hack;
-
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.lwjgl.input.Keyboard;
 
 public class GuiWalk extends Hack{
 

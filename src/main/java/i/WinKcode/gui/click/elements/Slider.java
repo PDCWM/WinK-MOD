@@ -1,14 +1,13 @@
 package i.WinKcode.gui.click.elements;
 
-import java.util.ArrayList;
-
 import i.WinKcode.gui.click.ClickGui;
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.ComponentType;
 import i.WinKcode.gui.click.listener.SliderChangeListener;
+import i.WinKcode.utils.visual.RenderUtils;
 import org.lwjgl.input.Mouse;
 
-import i.WinKcode.utils.visual.RenderUtils;
+import java.util.ArrayList;
 
 public class Slider extends Component {
 

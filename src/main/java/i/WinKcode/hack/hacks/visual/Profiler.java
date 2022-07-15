@@ -1,29 +1,19 @@
 package i.WinKcode.hack.hacks.visual;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-
-import i.WinKcode.hack.HackCategory;
-import org.lwjgl.opengl.GL11;
-
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.managers.EnemyManager;
 import i.WinKcode.managers.FriendManager;
+import i.WinKcode.utils.MathUtils;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.ValidUtils;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.types.BooleanValue;
-import i.WinKcode.utils.MathUtils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -34,6 +24,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Profiler extends Hack{
 	

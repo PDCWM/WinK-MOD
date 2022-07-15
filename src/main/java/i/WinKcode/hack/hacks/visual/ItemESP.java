@@ -1,8 +1,7 @@
 package i.WinKcode.hack.hacks.visual;
 
-import i.WinKcode.hack.HackCategory;
-
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.visual.RenderUtils;
 import net.minecraft.entity.Entity;

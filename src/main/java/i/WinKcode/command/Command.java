@@ -1,7 +1,5 @@
 package i.WinKcode.command;
 
-import net.minecraft.client.Minecraft;
-
 public abstract class Command {
 	
 	private String command;

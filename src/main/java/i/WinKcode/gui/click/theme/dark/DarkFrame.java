@@ -1,8 +1,5 @@
 package i.WinKcode.gui.click.theme.dark;
 
-import java.awt.Color;
-import java.awt.Dimension;
-
 import i.WinKcode.gui.click.base.Component;
 import i.WinKcode.gui.click.base.ComponentRenderer;
 import i.WinKcode.gui.click.base.ComponentType;
@@ -12,6 +9,8 @@ import i.WinKcode.hack.hacks.visual.ClickGui;
 import i.WinKcode.utils.MathUtils;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;
+
+import java.awt.*;
 
 public class DarkFrame extends ComponentRenderer {
 

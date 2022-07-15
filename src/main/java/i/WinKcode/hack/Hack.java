@@ -1,23 +1,15 @@
 package i.WinKcode.hack;
 
-import java.util.ArrayList;
-
 import i.WinKcode.gui.click.ClickGuiScreen;
 import i.WinKcode.utils.system.Connection;
 import i.WinKcode.utils.visual.ChatUtils;
+import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.Value;
 import i.WinKcode.value.types.BooleanValue;
 import i.WinKcode.value.types.ModeValue;
 import i.WinKcode.wrappers.Wrapper;
-import i.WinKcode.utils.visual.RenderUtils;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.GuiContainerEvent;
-import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -25,6 +17,8 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
+import java.util.ArrayList;
 
 public class Hack {
 	

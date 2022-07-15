@@ -1,8 +1,7 @@
 package i.WinKcode.utils.visual;
 
-import i.WinKcode.hack.hacks.another.GhostMode;
 import i.WinKcode.Main;
-
+import i.WinKcode.hack.hacks.another.GhostMode;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;

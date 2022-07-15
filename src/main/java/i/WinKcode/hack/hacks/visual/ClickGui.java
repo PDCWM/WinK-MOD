@@ -1,11 +1,9 @@
 package i.WinKcode.hack.hacks.visual;
 
-import i.WinKcode.hack.HackCategory;
-import i.WinKcode.hack.hacks.another.GhostMode;
-import org.lwjgl.input.Keyboard;
-
 import i.WinKcode.Main;
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
+import i.WinKcode.hack.hacks.another.GhostMode;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.Mode;
@@ -16,6 +14,7 @@ import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Text;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.lwjgl.input.Keyboard;
 
 public class ClickGui extends Hack{
 

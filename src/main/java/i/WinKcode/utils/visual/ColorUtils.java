@@ -1,6 +1,6 @@
 package i.WinKcode.utils.visual;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class ColorUtils {
 

@@ -1,17 +1,12 @@
 package i.WinKcode.hack.hacks.player;
 
-import i.WinKcode.hack.HackCategory;
-
 import i.WinKcode.hack.Hack;
-
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.types.ModeValue;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-import org.lwjgl.input.Keyboard;
-
-import java.security.Key;
 
 public class Flight extends Hack{
 

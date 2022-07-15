@@ -1,7 +1,5 @@
 package i.WinKcode.hack.hacks.visual;
 
-import java.util.ArrayDeque;
-
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.Utils;
@@ -16,6 +14,8 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+
+import java.util.ArrayDeque;
 
 public class ChestESP extends Hack {
 

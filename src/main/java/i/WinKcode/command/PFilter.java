@@ -1,8 +1,7 @@
 package i.WinKcode.command;
 
-import i.WinKcode.utils.visual.ChatUtils;
-
 import i.WinKcode.managers.PickupFilterManager;
+import i.WinKcode.utils.visual.ChatUtils;
 
 public class PFilter extends Command
 {

@@ -1,9 +1,9 @@
 package i.WinKcode.managers;
 
-import java.util.LinkedList;
-
 import i.WinKcode.utils.visual.ChatUtils;
 import net.minecraft.item.Item;
+
+import java.util.LinkedList;
 
 public class PickupFilterManager {
 

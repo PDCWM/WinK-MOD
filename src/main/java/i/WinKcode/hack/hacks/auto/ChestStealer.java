@@ -1,10 +1,10 @@
 package i.WinKcode.hack.hacks.auto;
 
+import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 import i.WinKcode.utils.system.Connection;
 import i.WinKcode.value.types.IntegerValue;
 import i.WinKcode.wrappers.Wrapper;
-import i.WinKcode.hack.Hack;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.inventory.ClickType;
