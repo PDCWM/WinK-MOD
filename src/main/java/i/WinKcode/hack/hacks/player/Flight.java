@@ -16,7 +16,7 @@ public class Flight extends Hack{
 		super("Flight", HackCategory.PLAYER);
 		this.GUIName = "飞行";
 
-		this.mode = new ModeValue("类型", new Mode("简易", true), new Mode("动态", false), new Mode("Hypixel", false));
+		this.mode = new ModeValue("模式", new Mode("简易", true), new Mode("动态", false), new Mode("Hypixel", false));
 
 		this.addValue(mode);
 	}

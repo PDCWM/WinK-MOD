@@ -2,6 +2,7 @@ package i.WinKcode.hack.hacks.player;
 
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.utils.Utils;
 import i.WinKcode.value.types.BooleanValue;
 import i.WinKcode.value.types.IntegerValue;
 import i.WinKcode.wrappers.Wrapper;
@@ -10,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 
 public class ExpandJump extends Hack {
     public IntegerValue Distance;
-    public BooleanValue stepAir;
+    public BooleanValue stepAir, step;
 
     public ExpandJump() {
         super("ExpandJump", HackCategory.PLAYER);
@@ -20,7 +21,8 @@ public class ExpandJump extends Hack {
         Distance = new IntegerValue("范围", 200, 100, 1000);
 
         stepAir = new BooleanValue("踏空", false);
-        this.addValue(Distance, stepAir);
+        step = new BooleanValue("跟随视角", false);
+        this.addValue(Distance, stepAir, step);
     }
 
     @Override
@@ -33,16 +35,19 @@ public class ExpandJump extends Hack {
         //double hce = hDistance.getValue() * 0.1;
         //double wce = wDistance.getValue() * 0.01;
         if (key == Keyboard.KEY_SPACE){
-            /*float f = Utils.getDirection();
-
-            Wrapper.INSTANCE.player().motionX -= (double)(MathHelper.sin(f)) * wce;
-            Wrapper.INSTANCE.player().motionZ += (double)(MathHelper.cos(f)) * wce;
             if(!stepAir.getValue() && !Wrapper.INSTANCE.player().onGround) {
                 return;
             }
-            Wrapper.INSTANCE.player().motionY = hce;*/
 
-            if(!stepAir.getValue() && !Wrapper.INSTANCE.player().onGround) {
+            if(!step.getValue()) {
+                float f = Utils.getDirection();
+                double wce = Distance.getValue() * 0.01;
+                Wrapper.INSTANCE.player().motionX -= (double)(MathHelper.sin(f)) * wce;
+                Wrapper.INSTANCE.player().motionZ += (double)(MathHelper.cos(f)) * wce;
+                if(!stepAir.getValue() && !Wrapper.INSTANCE.player().onGround) {
+                    return;
+                }
+                Wrapper.INSTANCE.player().motionY = 1F;
                 return;
             }
 
