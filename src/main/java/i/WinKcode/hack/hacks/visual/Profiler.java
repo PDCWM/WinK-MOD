@@ -7,6 +7,7 @@ import i.WinKcode.managers.FriendManager;
 import i.WinKcode.utils.MathUtils;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.ValidUtils;
+import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.types.BooleanValue;
@@ -24,6 +25,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import org.apache.commons.lang3.CharUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -66,7 +68,9 @@ public class Profiler extends Hack{
 		}
 		super.onRenderWorldLast(event);
 	}
-	   
+
+	private int lastSs = 0;
+
 	void renderNameTag(EntityLivingBase entity, String tag, double x, double y, double z) {
     	if(entity instanceof EntityArmorStand || ValidUtils.isValidEntity(entity) || entity == Wrapper.INSTANCE.player()) { 
 			return;
@@ -75,37 +79,47 @@ public class Profiler extends Hack{
     	int color = ColorUtils.color(0, 0, 0, 130);
     	EntityPlayerSP player = Wrapper.INSTANCE.player();
     	FontRenderer fontRenderer = Wrapper.INSTANCE.fontRenderer();
-    	if(player.canEntityBeSeen(entity)) 
-    		color = ColorUtils.color(200, 200, 200, 160);
+    	if(player.canEntityBeSeen(entity))
+    		color = ColorUtils.color(139,139,139,160);
     	y += (entity.isSneaking() ? 0.5D : 0.7D);
     	float distance = player.getDistance(entity) / 3.5F;
-    	if (distance < 1.6F) {
-    		distance = 1.6F;
+    	if (distance < 2.0F) {
+    		distance = 2.0F;
  	    }
     	
     	if(entity instanceof EntityPlayer) {
     		EntityPlayer entityPlayer = (EntityPlayer)entity;
     		String ID = Utils.getPlayerName(entityPlayer);
+
+			color = ColorUtils.color(
+					ColorUtils.rainbow().getRed(),
+					ColorUtils.rainbow().getGreen(),
+					ColorUtils.rainbow().getBlue(),
+					200);
+
     		if(EnemyManager.enemysList.contains(ID)) {
    	         	tag = "\u00a7c" + ID;
-   	         	color = ColorUtils.color(179, 20, 20, 160);
+   	         	color = ColorUtils.color(179, 20, 20, 200);
     		}
     		if(FriendManager.friendsList.contains(ID)) {
     			tag = "\u00a73" + ID;
-    			color = ColorUtils.color(66, 147, 179, 160);
+    			color = ColorUtils.color(66, 147, 179, 200);
     		}
     		if(ValidUtils.isBot(entityPlayer)) {
     			tag = "\u00a7e" + ID;
-   	         	color = ColorUtils.color(200, 200, 0, 160);
+   	         	color = ColorUtils.color(200, 200, 0, 200);
     		}
     	}
     	
     	int health = (int)entity.getHealth();
-    	float bHealth = health / entity.getMaxHealth();
     	int xtColor = ColorUtils.color(50,205,50,180);
 	     if (health <= entity.getMaxHealth() * 0.25D) {
 	       	//tag = tag + "\u00a74";
-	       	xtColor = ColorUtils.color(255,0,0,180);
+			 if(lastSs++ < 10){
+				 xtColor = ColorUtils.color(255,0,0,180);
+			 }else{ xtColor = color; }
+			 if(lastSs >= 15)
+			 	lastSs = 0;
 	     } else if (health <= entity.getMaxHealth() * 0.5D) {
 	       	//tag = tag + "\u00a76";
 	       	xtColor = ColorUtils.color(255,165,0,180);
@@ -116,7 +130,9 @@ public class Profiler extends Hack{
 	       	//tag = tag + "\u00a72";
 	       	xtColor = ColorUtils.color(50,205,50,180);
 	     }
-	     tag = String.valueOf(tag) + " " + Math.round(player.getDistance(entity)) + "m";
+
+	     float distanceV = player.getDistance(entity);
+	     tag = tag + " " + Math.round(distanceV) + "m";
 	     
 	     RenderManager renderManager = Wrapper.INSTANCE.mc().getRenderManager();
 	     float scale = distance;
@@ -132,45 +148,52 @@ public class Profiler extends Hack{
 	     GL11.glDisable(2929);
 	     Tessellator var14 = Tessellator.getInstance();
 	     BufferBuilder var15 = var14.getBuffer();
-	     int width = fontRenderer.getStringWidth(tag) / 2;
+	     int tagWidth = fontRenderer.getStringWidth(tag) / 2;
 	     GL11.glEnable(3042);
 	     GL11.glBlendFunc(770, 771);
-	     RenderUtils.drawRect(-width - 2, -(fontRenderer.FONT_HEIGHT + 1), width + 2, 2.0F, color);
-	     RenderUtils.drawRect((-width - 2) * bHealth, -2, (width + 2) * bHealth, 2.0F, xtColor);
+	     RenderUtils.drawRect(-tagWidth - 2, -(fontRenderer.FONT_HEIGHT + 1), tagWidth + 2, 2.0F, color);
 //	     RenderUtils.drawRect(-width - 3.0F, -(fontRenderer.FONT_HEIGHT + 1) - 1.0F, width + 3.0F, -(fontRenderer.FONT_HEIGHT + 1), color);
 //	     RenderUtils.drawRect(-width - 3.0F, 3.0F, width + 3.0F, 2.0F, color);
 //	     RenderUtils.drawRect(-width - 3.0F, -(fontRenderer.FONT_HEIGHT + 1) - 1.0F, -width - 2, 3.0F, color);
 //	     RenderUtils.drawRect(width + 3.0F, -(fontRenderer.FONT_HEIGHT + 1) - 1.0F, width + 2, 3.0F, color);
-	     fontRenderer.drawString(tag, MathUtils.getMiddle(-width - 2, width + 2) - width, -(fontRenderer.FONT_HEIGHT - 1), Color.WHITE.getRGB(), false);
-	     if (entity instanceof EntityPlayer && this.armor.getValue())
-	     {
-	    	 EntityPlayer entityPlayer = (EntityPlayer)entity;
-	    	 GlStateManager.translate(0.0F, 1.0F, 0.0F);
-	    	 renderArmor(entityPlayer, 0, -(fontRenderer.FONT_HEIGHT + 1) - 20);
-	    	 GlStateManager.translate(0.0F, -1.0F, 0.0F);
-	     }
-	     GL11.glPushMatrix();
-	     GL11.glPopMatrix();
-	     GL11.glEnable(2896);
-	     GL11.glEnable(2929);
-	     GL11.glDisable(3042);
-	     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	     GL11.glPopMatrix();
+	     fontRenderer.drawString(tag, MathUtils.getMiddle(-tagWidth - 2, tagWidth + 2) - tagWidth, -(fontRenderer.FONT_HEIGHT - 1), Color.WHITE.getRGB(), false);
+		float bHealth = entity.getHealth() / entity.getMaxHealth();
+		if (entity instanceof EntityPlayer)
+		{
+			float bottom = 120F - ((Math.min(distanceV, 22.5F)) * 4.0F);
+			float width = -40F + Math.min(distanceV, 38F);
+	    	RenderUtils.drawRect(width, 4F, width + 4F, bottom, color);
+	     	RenderUtils.drawRect(width + 0.5F, 4.5F, width + 3.5F, (bottom - 0.5F) * bHealth, xtColor);
+	     	if(this.armor.getValue()) {
+				EntityPlayer entityPlayer = (EntityPlayer) entity;
+				GlStateManager.translate(0.0F, 1.0F, 0.0F);
+				renderArmor(entityPlayer, 0, -(fontRenderer.FONT_HEIGHT + 1) - 20);
+				GlStateManager.translate(0.0F, -1.0F, 0.0F);
+			}
+		}else {
+			RenderUtils.drawRect((-tagWidth - 2) * bHealth, -2, (tagWidth + 2) * bHealth, 2.0F, xtColor);
+		}
+		GL11.glPushMatrix();
+		GL11.glPopMatrix();
+		GL11.glEnable(2896);
+		GL11.glEnable(2929);
+		GL11.glDisable(3042);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glPopMatrix();
 	}
 	   
 		public void renderArmor(EntityPlayer player, int x, int y) {
 		     InventoryPlayer items = player.inventory;
-		     ItemStack inHand = player.getHeldItemMainhand();
+		     ItemStack MainHand = player.getHeldItemMainhand();
+		     ItemStack OffHand = player.getHeldItemOffhand();
 		     ItemStack boots = items.armorItemInSlot(0);
 		     ItemStack leggings = items.armorItemInSlot(1);
 		     ItemStack body = items.armorItemInSlot(2);
 		     ItemStack helm = items.armorItemInSlot(3);
 		     ItemStack[] stuff = null;
-		     if (inHand != null) {
-		       stuff = new ItemStack[] { inHand, helm, body, leggings, boots };
-		     } else {
-		       stuff = new ItemStack[] { helm, body, leggings, boots };
-		     }
+
+			 stuff = new ItemStack[] { MainHand, helm, body, leggings, boots, OffHand };
+
 		     List<ItemStack> stacks = new ArrayList();
 		     ItemStack[] array;
 		     int length = (array = stuff).length;

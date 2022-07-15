@@ -11,7 +11,7 @@ import java.util.Objects;
 public class AntiHunger extends Hack {
     public AntiHunger() {
         super("AntiHunger", HackCategory.PLAYER);
-        this.GUIName = "消除负面效果";
+        this.GUIName = "反负面效果";
     }
 
     @Override

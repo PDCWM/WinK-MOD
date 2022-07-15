@@ -37,12 +37,30 @@ public class HackManager {
 
 	public HackManager() {
 		hacks = new ArrayList<Hack>();
+		// player
+		addHack(new Flight());
+		addHack(new Speed());
+		addHack(new Glide());
+		addHack(new Teleport());
 		addHack(new AntiFall());
+		addHack(new Ghost());
+		addHack(new ExpandJump());
+		addHack(new AutoSwim());
+		addHack(new Blink());
+		addHack(new AutoStep());
+		addHack(new AntiSneak());
+		addHack(new FastBreak());
+		addHack(new FastLadder());
+		addHack(new FastCraftingGUI());
+		addHack(new RemoteChest());
 		addHack(new AntiHunger());
-		addHack(new Targets());
-		addHack(new Enemys());
-		addHack(new Teams());
-		addHack(new NoGuiEvents());
+		addHack(new Rage());
+		addHack(new Parkour());
+		addHack(new Spider());
+		addHack(new AntiWeb());
+
+
+		// visual
 		addHack(new Glowing());
 		addHack(new Trajectories());
 		addHack(new XRay());
@@ -51,9 +69,21 @@ public class HackManager {
 		addHack(new ChestESP());
 		addHack(new Tracers());
 		addHack(new WallHack());
-		addHack(new Flight());
 		addHack(new NightVision());
 		addHack(new Profiler());
+		addHack(new FreeCam());
+		addHack(new BlockOverlay());
+		addHack(new PlayerRadar());
+		addHack(new SkinChanger());
+		addHack(new AntiRain());
+		addHack(new ArmorHUD());
+		addHack(new HUD());
+		addHack(new Visual());
+		addHack(new FastGUI());
+		addHack(new Console());
+		addHack(new ClickGui());
+
+		// combat
 		addHack(new AntiBot());
 		addHack(new AimBot());
 		addHack(new BowAimBot());
@@ -61,59 +91,40 @@ public class HackManager {
 		addHack(new Criticals());
 		addHack(new KillAura());
 		addHack(new Velocity());
+		addHack(new InteractClick());
+		addHack(new FireballReturn());
+		addHack(new AutoTotem());
+		addHack(new AutoShield());
+		addHack(new HitBox());
+		addHack(new Disconnect());
+
+		// auto
 		addHack(new AutoSprint());
 		addHack(new AutoArmor());
 		addHack(new AutoFish());
-		addHack(new InteractClick());
 		addHack(new ChestStealer());
-		addHack(new Glide());
 		addHack(new Nuker());
-		addHack(new Ghost());
-		addHack(new Blink());
 		addHack(new Scaffold());
-		addHack(new FastLadder());
-		addHack(new Speed());
-		addHack(new ExpandJump());
-		addHack(new AutoStep());
-		addHack(new AntiSneak());
-		addHack(new FreeCam());
-		addHack(new BlockOverlay());
+		addHack(new AutoEat());
+		addHack(new AutoWalk());
+
+		// another
+		addHack(new Targets());
+		addHack(new Enemys());
+		addHack(new Teams());
+		addHack(new NoGuiEvents());
 		addHack(new PluginsGetter());
 		addHack(new AttackPacketCW());
 		addHack(new AttackPacketCIA());
-		addHack(new Teleport());
-		addHack(new FireballReturn());
 		addHack(new SkinStealer());
-		addHack(new RemoteChest());
 		addHack(new GuiWalk());
-		addHack(new PlayerRadar());
-		addHack(new SkinChanger());
-		addHack(new Parkour());
-		addHack(new AntiRain());
-		addHack(new AntiWeb());
-		addHack(new Spider());
-		addHack(new AutoEat());
-		addHack(new AutoWalk());
-		addHack(new AutoSwim());
-		addHack(new AutoTotem());
-		addHack(new AutoShield());
-		addHack(new Rage());
-		addHack(new HitBox());
 		addHack(new AntiAfk());
-		addHack(new TestHack());
-		addHack(new FastBreak());
-		addHack(new Disconnect());
 		addHack(new GhostMode());
 		addHack(new PortalGodMode());
 		addHack(new PickupFilter());
 		addHack(new PacketFilter());
 		addHack(new FakeCreative());
-		addHack(new ArmorHUD());
-		addHack(new HUD());
-		addHack(new FastGUI());
-		addHack(new Console());
-		addHack(new ClickGui());
-		addHack(new FastCraftingGUI());
+		addHack(new TestHack());
 	}
 	
 	public void setGuiManager(GuiManager guiManager) {

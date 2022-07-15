@@ -57,7 +57,7 @@ public class KillAura extends Hack{
 		this.mode = new ModeValue("类型", new Mode("简易", true), new Mode("AAC", false));
 		walls = new BooleanValue("穿墙", false);
 		autoDelay = new BooleanValue("自动延迟", false);
-		packetReach = new BooleanValue("数据包到达", false);
+		packetReach = new BooleanValue("瞬移砍人", false);
 		packetRange = new DoubleValue("百米大刀", 10.0D, 1.0D, 100D);
 		minCPS = new IntegerValue("MinCPS", 4, 1, 30);
 		maxCPS = new IntegerValue("MaxCPS", 8, 1, 30);

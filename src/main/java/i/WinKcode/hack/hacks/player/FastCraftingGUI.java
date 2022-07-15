@@ -1,4 +1,4 @@
-package i.WinKcode.hack.hacks.visual;
+package i.WinKcode.hack.hacks.player;
 
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
@@ -13,7 +13,7 @@ import org.lwjgl.input.Keyboard;
 
 public class FastCraftingGUI extends Hack {
     public FastCraftingGUI() {
-        super("FastCraftingGUI", HackCategory.VISUAL);
+        super("FastCraftingGUI", HackCategory.PLAYER);
         this.GUIName = "随身工作台";
         this.setKey(Keyboard.KEY_ADD);
         this.setShow(false);
