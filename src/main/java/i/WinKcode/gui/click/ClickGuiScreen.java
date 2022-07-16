@@ -1,16 +1,20 @@
 package i.WinKcode.gui.click;
 
 import i.WinKcode.gui.Tooltip;
+import i.WinKcode.gui.click.elements.Frame;
 import i.WinKcode.managers.FileManager;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ClickGuiScreen extends GuiScreen {
 
@@ -21,19 +25,34 @@ public class ClickGuiScreen extends GuiScreen {
 	public ClickGuiScreen() {}
    
 	@Override
-	protected void mouseClicked(int x, int y, int button) throws IOException { super.mouseClicked(x, y, button); }
+	protected void mouseClicked(int x, int y, int button) throws IOException {
+	    super.mouseClicked(x, y, button);
+	}
    
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 	   	tooltip = null;
+
+        Minecraft mc = Minecraft.getMinecraft();
+        ScaledResolution scaledResolution = new ScaledResolution(mc);
+        float scale = scaledResolution.getScaleFactor() / (float) Math.pow(scaledResolution.getScaleFactor(), 2D);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 0, 1000);	//貌似是置顶
+        GlStateManager.scale(scale * 2, scale * 2, scale * 2);
+
        	clickGui.render();
        	if(tooltip != null) tooltip.render();
        	drawRect(0, 0, 0, 0, 0); // TODO WTF ?
+
+        GlStateManager.popMatrix();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
    
    @Override
-   public void initGui() { Keyboard.enableRepeatEvents(true); super.initGui(); }
+   public void initGui() {
+	    Keyboard.enableRepeatEvents(true);
+	    super.initGui();
+	}
     
     @Override
 	public void updateScreen() {
@@ -58,10 +77,11 @@ public class ClickGuiScreen extends GuiScreen {
 		if (Keyboard.isCreated()) {
             Keyboard.enableRepeatEvents(true);
             while (Keyboard.next()) {
+                //ChatUtils.message(String.format("Keyboard: %d", Keyboard.getEventKey()));
                 if (Keyboard.getEventKeyState()) {
                 	if(!this.handleKeyScroll(Keyboard.getEventKey()))
                     if (Keyboard.getEventKey() == Keyboard.KEY_RETURN) {
-                        mc.displayGuiScreen((GuiScreen)null);
+                        mc.displayGuiScreen(null);
                         FileManager.saveHacks();
                         FileManager.saveClickGui();
                     } else
@@ -85,6 +105,7 @@ public class ClickGuiScreen extends GuiScreen {
                 ScaledResolution scaledResolution = new ScaledResolution(mc);
                 int mouseX = Mouse.getEventX() * scaledResolution.getScaledWidth() / mc.displayWidth;
                 int mouseY = scaledResolution.getScaledHeight() - Mouse.getEventY() * scaledResolution.getScaledHeight() / mc.displayHeight - 1;
+                //ChatUtils.message(String.format("Mouse: %d %d", mouseX ,mouseY));
                 if (Mouse.getEventButton() == -1) {
                     clickGui.onMouseScroll((Mouse.getEventDWheel() / 100) * 3);
                     clickGui.onMouseUpdate(mouseX, mouseY);

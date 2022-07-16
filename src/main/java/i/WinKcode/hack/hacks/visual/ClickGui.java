@@ -3,7 +3,7 @@ package i.WinKcode.hack.hacks.visual;
 import i.WinKcode.Main;
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
-import i.WinKcode.hack.hacks.another.GhostMode;
+import i.WinKcode.hack.hacks.another.HackMode;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.Mode;
@@ -19,6 +19,7 @@ import org.lwjgl.input.Keyboard;
 public class ClickGui extends Hack{
 
 	public ModeValue theme;
+	public static ModeValue language;
 	public static BooleanValue rainbow;
 	public static BooleanValue shadow;
 	public static BooleanValue tooltip;
@@ -38,17 +39,17 @@ public class ClickGui extends Hack{
 		this.setShow(false);
 		
 		this.theme = new ModeValue("主题", new Mode("黑暗", true), new Mode("明亮", false));
+		language = new ModeValue("语言", new Mode("中文", true), new Mode("English", false));
+		tooltip = new BooleanValue("提示文本", true);
+		shadow = new BooleanValue("阴影", true);
+		rainbow = new BooleanValue("彩虹光", true);
+		red = new IntegerValue("Red", 255, 0, 255);
+		green = new IntegerValue("Green", 255, 0, 255);
+		blue = new IntegerValue("Blue", 255, 0, 255);
+		alpha = new IntegerValue("Alpha", 255, 0, 255);
 		
-		this.tooltip = new BooleanValue("提示文本", true);
-		this.shadow = new BooleanValue("阴影", true);
-		this.rainbow = new BooleanValue("彩虹光", true);
-		this.red = new IntegerValue("Red", 255, 0, 255);
-		this.green = new IntegerValue("Green", 255, 0, 255);
-		this.blue = new IntegerValue("Blue", 255, 0, 255);
-		this.alpha = new IntegerValue("Alpha", 255, 0, 255);
-		
-		this.addValue(theme, tooltip, shadow, rainbow, red, green, blue, alpha);
-		this.setColor();
+		this.addValue(theme, language, tooltip, shadow, rainbow, red, green, blue, alpha);
+		setColor();
 	}
 	
 	@Override
@@ -69,16 +70,21 @@ public class ClickGui extends Hack{
 	
 	@Override
 	public void onEnable() {
-		if(GhostMode.enabled)
+		if(HackMode.enabled)
 			return;
 		Wrapper.INSTANCE.mc().displayGuiScreen(Main.hackManager.getGui());
 		super.onEnable();
 	}
+
+	@Override
+	public void onDisable() {
+
+	}
 	
 	@Override
 	public void onClientTick(ClientTickEvent event) {
-		this.setColor();
-		this.isLight = theme.getMode("明亮").isToggled();
+		setColor();
+		isLight = theme.getMode("明亮").isToggled();
 		super.onClientTick(event);
 	}
 	

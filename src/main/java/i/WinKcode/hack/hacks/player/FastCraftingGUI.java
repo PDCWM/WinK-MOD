@@ -2,7 +2,7 @@ package i.WinKcode.hack.hacks.player;
 
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
-import i.WinKcode.hack.hacks.another.GhostMode;
+import i.WinKcode.hack.hacks.another.HackMode;
 import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.inventory.GuiCrafting;
@@ -27,7 +27,7 @@ public class FastCraftingGUI extends Hack {
     public GuiCrafting guiCrafting;
     @Override
     public void onEnable() {
-        if(GhostMode.enabled) return;
+        if(HackMode.enabled) return;
         //guiContainer = new ContainerWorkbench(Wrapper.INSTANCE.inventory(), Wrapper.INSTANCE.world(), BlockPos.ORIGIN);
         //Wrapper.INSTANCE.mc().displayGuiScreen(new GuiConsole());
         Wrapper.INSTANCE.player().openContainer.windowId += 1;

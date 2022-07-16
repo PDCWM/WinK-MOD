@@ -1,5 +1,5 @@
 /*******************************************************************************
- *     GishCode a Forge Hacked Client
+ *     WinKMod a Forge Hacked Client
  *     Copyright (C) 2019 Gish_Reloaded
  ******************************************************************************/
 package i.WinKcode;

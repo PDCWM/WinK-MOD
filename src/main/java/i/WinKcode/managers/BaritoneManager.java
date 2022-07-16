@@ -54,7 +54,7 @@ public class BaritoneManager {
 
     public void install() {
         try {
-            File jarFile = new File(FileManager.GISHCODE_DIR,"baritone-1.2.15.jar");
+            File jarFile = new File(FileManager.WinKMod_DIR,"baritone-1.2.15.jar");
             if(!jarFile.exists()) {
                 FileOutputStream fo = new FileOutputStream(jarFile);
                 InputStream InputStream = this.getClass().getClassLoader().getResource("assets/baritone-1.2.15.jar").openStream();

@@ -1,7 +1,7 @@
 package i.WinKcode.utils.visual;
 
 import i.WinKcode.Main;
-import i.WinKcode.hack.hacks.another.GhostMode;
+import i.WinKcode.hack.hacks.another.HackMode;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -10,7 +10,7 @@ public class ChatUtils{	// TODO Rewrite to LogManager
 	
 	public static void component(ITextComponent component)
 	{
-		if(Wrapper.INSTANCE.player() == null || Wrapper.INSTANCE.mc().ingameGUI.getChatGUI() == null || GhostMode.enabled)
+		if(Wrapper.INSTANCE.player() == null || Wrapper.INSTANCE.mc().ingameGUI.getChatGUI() == null || HackMode.enabled)
 			return;
 			Wrapper.INSTANCE.mc().ingameGUI.getChatGUI()
 				.printChatMessage(new TextComponentTranslation("")

@@ -56,8 +56,8 @@ public class HUD extends Hack {
 		String coords = String.format("\u00a77X: \u00a7f%s \u00a77Y: \u00a7f%s \u00a77Z: \u00a7f%s", RenderUtils.DF((float)x, 1), RenderUtils.DF((float)y, 1), RenderUtils.DF((float)z, 1));
 		boolean isChatOpen = Wrapper.INSTANCE.mc().currentScreen instanceof GuiChat || Wrapper.INSTANCE.mc().currentScreen instanceof GuiConsole;
 		
-		int heightFPS = isChatOpen ? sr.getScaledHeight() - 37 : sr.getScaledHeight() - 22;
-		int heightCoords = isChatOpen ? sr.getScaledHeight() - 25 : sr.getScaledHeight() - 10;
+		int heightFPS = isChatOpen ? sr.getScaledHeight() - 37 : sr.getScaledHeight() - 24;
+		int heightCoords = isChatOpen ? sr.getScaledHeight() - 25 : sr.getScaledHeight() - 12;
 		
 		int colorRect = ColorUtils.color(0.0F, 0.0F, 0.0F, 0.0F);
 		int colorRect2 = ColorUtils.color(0.0F, 0.0F, 0.0F, 0.5F);
@@ -85,17 +85,21 @@ public class HUD extends Hack {
 				}
 			}
 
+			String name = hack.GUIName;
+			if(!i.WinKcode.hack.hacks.visual.ClickGui.language.getMode("中文").isToggled()) {
+				name = hack.getName();
+			}
 			xPos = 0;
 			if(HackManager.getHack("FastGUI").isToggled()){
 				xPos = 86;
 			}
 			if(effects.getValue()) {
 				xPos += 6;
-				RenderUtils.drawBorderedRect(xPos - 2, yPos - 2, xPos + Wrapper.INSTANCE.fontRenderer().getStringWidth(hack.GUIName + modeName) + 2, yPos + 10, 1, colorRect, ClickGui.getColor());
+				RenderUtils.drawBorderedRect(xPos - 2, yPos - 2, xPos + Wrapper.INSTANCE.fontRenderer().getStringWidth(name + modeName) + 2, yPos + 10, 1, colorRect, ClickGui.getColor());
 			} else {
 				xPos += 4;
 			}
-			RenderUtils.drawStringWithRect(hack.GUIName + modeName, xPos, yPos, ClickGui.getColor(),
+			RenderUtils.drawStringWithRect(name + modeName, xPos, yPos, ClickGui.getColor(),
 					colorRect, colorRect2);
 			if(effects.getValue()) {
 				RenderUtils.drawBorderedRect(xPos - 2, yPos - 2, xPos - 6, yPos + 10, 1, ClickGui.getColor(), ClickGui.getColor());

@@ -26,7 +26,7 @@ public class FileManager { // TODO this class will be rewrite
 
     private static JsonParser jsonParser = new JsonParser();
 
-    public static File GISHCODE_DIR = null;
+    public static File WinKMod_DIR = null;
 
     private static File HACKS = null;
     private static File XRAYDATA = null;
@@ -39,19 +39,19 @@ public class FileManager { // TODO this class will be rewrite
     public static File PacketLog = null;
     
     public FileManager() {
-    	GISHCODE_DIR = getDirectory();
-    	if(GISHCODE_DIR == null) return;
+    	WinKMod_DIR = getDirectory();
+    	if(WinKMod_DIR == null) return;
     	
-        HACKS = new File(GISHCODE_DIR, "hacks.json");
-        XRAYDATA = new File(GISHCODE_DIR, "xraydata.json");
-        PICKUPFILTER = new File(GISHCODE_DIR, "pickupfilter.json");
-        SKINCHANGER = new File(GISHCODE_DIR, "cachedtextures");
-        CLICKGUI = new File(GISHCODE_DIR, "clickgui.json");
-        FRIENDS = new File(GISHCODE_DIR, "friends.json");
-        ENEMYS = new File(GISHCODE_DIR, "enemys.json");
-        PacketLog = new File(GISHCODE_DIR, "PacketLog.log");
+        HACKS = new File(WinKMod_DIR, "hacks.json");
+        XRAYDATA = new File(WinKMod_DIR, "xraydata.json");
+        PICKUPFILTER = new File(WinKMod_DIR, "pickupfilter.json");
+        SKINCHANGER = new File(WinKMod_DIR, "cachedtextures");
+        CLICKGUI = new File(WinKMod_DIR, "clickgui.json");
+        FRIENDS = new File(WinKMod_DIR, "friends.json");
+        ENEMYS = new File(WinKMod_DIR, "enemys.json");
+        PacketLog = new File(WinKMod_DIR, "PacketLog.log");
     	
-        if (!GISHCODE_DIR.exists()) GISHCODE_DIR.mkdir();
+        if (!WinKMod_DIR.exists()) WinKMod_DIR.mkdir();
         if (!HACKS.exists()) saveHacks(); else loadHacks();
         if (!XRAYDATA.exists()) saveXRayData(); else loadXRayData();
         if (!PICKUPFILTER.exists()) savePickupFilter(); else loadPickupFilter();
@@ -67,9 +67,25 @@ public class FileManager { // TODO this class will be rewrite
             }
         }
 	}
+
+	public static void allLoad() {
+        if (HACKS.exists()) loadHacks();
+        if (XRAYDATA.exists()) loadXRayData();
+        if (PICKUPFILTER.exists()) loadPickupFilter();
+        if (FRIENDS.exists()) loadFriends();
+        if (ENEMYS.exists()) loadEnemys();
+    }
+
+    public static void allSave() {
+        if (HACKS.exists()) saveHacks();
+        if (XRAYDATA.exists()) saveXRayData();
+        if (PICKUPFILTER.exists()) savePickupFilter();
+        if (FRIENDS.exists()) saveFriends();
+        if (ENEMYS.exists()) saveEnemys();
+    }
     
     public static File getDirectory() {
-    	String var = System.getenv("GISHCODE_DIR");
+    	String var = System.getenv("WinKMod_DIR");
     	File dir = var == null || var == "" ? Wrapper.INSTANCE.mc().mcDataDir : new File(var);
     	return new File(String.format("%s%s%s-%s%s", dir, File.separator, Main.NAME, Main.MCVERSION, File.separator));
     }

@@ -153,6 +153,10 @@ public class ClickGui extends ClickGuiScreen {
 		return frames;
 	}
 
+	public void clearFrames() {
+		frames.clear();
+	}
+
 	public void onKeyRelease(int eventKey, char eventCharacter) {
 
 		for (Frame frame : frames) {

@@ -1,15 +1,16 @@
 package i.WinKcode.managers;
 
 import i.WinKcode.gui.click.ClickGuiScreen;
+import i.WinKcode.gui.click.elements.Frame;
 import i.WinKcode.gui.click.theme.dark.DarkTheme;
 import i.WinKcode.hack.Hack;
+import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.hacks.TestHack;
 import i.WinKcode.hack.hacks.another.*;
 import i.WinKcode.hack.hacks.auto.*;
 import i.WinKcode.hack.hacks.combat.*;
 import i.WinKcode.hack.hacks.player.*;
 import i.WinKcode.hack.hacks.visual.*;
-import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.value.Mode;
 import i.WinKcode.value.Value;
 import i.WinKcode.value.types.ModeValue;
@@ -22,7 +23,6 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -33,7 +33,7 @@ public class HackManager {
 	private static Hack toggleHack = null;
 	private static ArrayList<Hack> hacks;
 	private GuiManager guiManager;
-	private ClickGuiScreen guiScreen;
+	private static ClickGuiScreen guiScreen;
 
 	public HackManager() {
 		hacks = new ArrayList<Hack>();
@@ -119,7 +119,7 @@ public class HackManager {
 		addHack(new SkinStealer());
 		addHack(new GuiWalk());
 		addHack(new AntiAfk());
-		addHack(new GhostMode());
+		addHack(new HackMode());
 		addHack(new PortalGodMode());
 		addHack(new PickupFilter());
 		addHack(new PacketFilter());
@@ -134,11 +134,16 @@ public class HackManager {
 	public ClickGuiScreen getGui() {
         if (this.guiManager == null) {
             this.guiManager = new GuiManager();
-            this.guiScreen = new ClickGuiScreen();
+            guiScreen = new ClickGuiScreen();
             ClickGuiScreen.clickGui = this.guiManager;
             this.guiManager.Init(180, 100);
     		this.guiManager.setTheme(new DarkTheme());
         }
+
+        if(this.guiManager.language != i.WinKcode.hack.hacks.visual.ClickGui.language.getMode("中文").isToggled()) {
+        	this.guiManager.clearFrames();
+        	this.guiManager.Init(180, 100);
+		}
         return this.guiManager;
     }
 	
@@ -214,32 +219,6 @@ public class HackManager {
 		if (Wrapper.INSTANCE.mc().currentScreen != null) {
             return;
         }
-		if (HackManager.getHack("XRay").isToggled()){
-			XRay x = (XRay) HackManager.getHack("XRay");
-			if(x.FakeMine.getMode("反假矿扫描").isToggled()){
-				if(key == Keyboard.KEY_Z){
-					if(!x.isXR) {
-						x.onEnable();
-					}else {
-						ChatUtils.warning("还没扫完呐.");
-					}
-				}
-			}/*
-			if(x.FakeMine.getMode("智能模式").isToggled()){
-				if(key == Keyboard.KEY_X) {
-					x.lastPx = (int)Wrapper.INSTANCE.player().posX;
-					x.lastPz = (int)Wrapper.INSTANCE.player().posY;
-					x.XrayAiStart = !x.XrayAiStart;
-				}else if(key == Keyboard.KEY_Z){
-					x.ClearBlock();
-				}
-			}*/
-		}
-		for(Hack hack : getHacks()) {
-			if(hack.isToggled()) {
-				hack.onKeyPressed(key);
-			}
-		}
 
 		for(Hack hack : getHacks()) {
     		if(hack.getKey() == key) {
@@ -247,6 +226,12 @@ public class HackManager {
     			toggleHack = hack;
     		}
     	}
+
+		for(Hack hack : getHacks()) {
+			if(hack.isToggled() && !HackMode.enabled) {
+				hack.onKeyPressed(key);
+			}
+		}
 	}
 	
 	public static void onGuiContainer(GuiContainerEvent event) {

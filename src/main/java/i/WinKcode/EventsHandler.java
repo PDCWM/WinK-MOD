@@ -3,7 +3,7 @@ package i.WinKcode;
 import i.WinKcode.gui.GuiConsole;
 import i.WinKcode.gui.click.ClickGuiScreen;
 import i.WinKcode.hack.Hack;
-import i.WinKcode.hack.hacks.another.GhostMode;
+import i.WinKcode.hack.hacks.another.HackMode;
 import i.WinKcode.hack.hacks.visual.ClickGui;
 import i.WinKcode.managers.CommandManager;
 import i.WinKcode.managers.HackManager;
@@ -96,7 +96,7 @@ public class EventsHandler {
 	
 	@SubscribeEvent
     public void onCameraSetup(EntityViewRenderEvent.CameraSetup event) {
-		if(Utils.nullCheck() || GhostMode.enabled) return;
+		if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onCameraSetup(event);
     	} catch (RuntimeException ex) {
@@ -109,7 +109,7 @@ public class EventsHandler {
 	
 	@SubscribeEvent
     public void onItemPickup(EntityItemPickupEvent event) {
-		if(Utils.nullCheck() || GhostMode.enabled) return;
+		if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onItemPickup(event);
     	} catch (RuntimeException ex) {
@@ -122,7 +122,7 @@ public class EventsHandler {
 	
 	@SubscribeEvent
     public void onProjectileImpact(ProjectileImpactEvent event) {
-		if(Utils.nullCheck() || GhostMode.enabled) return;
+		if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onProjectileImpact(event);
     	} catch (RuntimeException ex) {
@@ -135,7 +135,7 @@ public class EventsHandler {
     
     @SubscribeEvent
     public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
-		if(Utils.nullCheck() || GhostMode.enabled) return;
+		if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onEntityJoinWorldEvent(event);
     	} catch (RuntimeException ex) {
@@ -149,7 +149,7 @@ public class EventsHandler {
 	
     @SubscribeEvent
     public void onAttackEntity(AttackEntityEvent event) {
-    	if(Utils.nullCheck() || GhostMode.enabled) return;
+    	if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onAttackEntity(event);
     	} catch (RuntimeException ex) {
@@ -162,7 +162,7 @@ public class EventsHandler {
     
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-    	if(Utils.nullCheck() || GhostMode.enabled) return;
+    	if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onPlayerTick(event);
     	} catch (RuntimeException ex) {
@@ -189,7 +189,7 @@ public class EventsHandler {
     			HackManager.getHack("ClickGui").setToggled(false);
     		if(!(Wrapper.INSTANCE.mc().currentScreen instanceof GuiConsole))
     			HackManager.getHack("Console").setToggled(false);
-    		if(!GhostMode.enabled)
+    		if(!HackMode.enabled)
     			HackManager.onClientTick(event);
     	} catch (RuntimeException ex) {
     		ex.printStackTrace();
@@ -201,7 +201,7 @@ public class EventsHandler {
     
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-    	if(Utils.nullCheck() || GhostMode.enabled) return;
+    	if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onLivingUpdate(event);
     	} catch (RuntimeException ex) {
@@ -214,7 +214,7 @@ public class EventsHandler {
     
     @SubscribeEvent
     public void onRenderPlayerEvent(RenderPlayerEvent event) {
-    	if(Utils.nullCheck() || GhostMode.enabled || Wrapper.INSTANCE.mcSettings().hideGUI) return;
+    	if(Utils.nullCheck() || HackMode.enabled || Wrapper.INSTANCE.mcSettings().hideGUI) return;
     	try {
     		HackManager.onRenderPlayer(event);
     	} catch (RuntimeException ex) {
@@ -227,7 +227,7 @@ public class EventsHandler {
     
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-    	if(Utils.nullCheck() || GhostMode.enabled || Wrapper.INSTANCE.mcSettings().hideGUI) return;
+    	if(Utils.nullCheck() || HackMode.enabled || Wrapper.INSTANCE.mcSettings().hideGUI) return;
     	try {
     		HackManager.onRenderWorldLast(event);
     	} catch (RuntimeException ex) {
@@ -240,7 +240,7 @@ public class EventsHandler {
 	
 	@SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent.Text event) {
-		if(Utils.nullCheck() || GhostMode.enabled) return;
+		if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onRenderGameOverlay(event);
     	} catch (RuntimeException ex) {
@@ -253,7 +253,7 @@ public class EventsHandler {
 	
 	@SubscribeEvent
 	public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event){
-		if(Utils.nullCheck() || GhostMode.enabled) return;
+		if(Utils.nullCheck() || HackMode.enabled) return;
     	try {
     		HackManager.onLeftClickBlock(event);
     	} catch (RuntimeException ex) {

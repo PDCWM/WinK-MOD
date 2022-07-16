@@ -17,6 +17,7 @@ import i.WinKcode.value.types.IntegerValue;
 import i.WinKcode.value.types.ModeValue;
 
 public class GuiManager extends ClickGui {
+	public boolean language = true;
 
 	public void Init(int frameHeight, int frameWidth) {
 		int right = GLUtils.getScreenWidth();
@@ -25,7 +26,8 @@ public class GuiManager extends ClickGui {
 
 		for (HackCategory category : HackCategory.values()) {
 			int hacksCount = 0;
-			
+			language = i.WinKcode.hack.hacks.visual.ClickGui.language.getMode("中文").isToggled();
+
 			String name = "未找到";
 			if(category == HackCategory.PLAYER) name = "玩家";
 			if(category == HackCategory.VISUAL) name = "视觉";
@@ -33,11 +35,20 @@ public class GuiManager extends ClickGui {
 			if(category == HackCategory.AUTO) name = "自动化";
 			if(category == HackCategory.ANOTHER) name = "其他";
 
-			Frame frame = new Frame(framePosX, framePosY, frameWidth, frameHeight, name);
+			Frame frame;
+			if(language) {
+				frame = new Frame(framePosX, framePosY, frameWidth, frameHeight, name);
+			}else{
+				frame = new Frame(framePosX, framePosY, frameWidth, frameHeight, category.name());
+			}
 
 			for (final Hack hack : HackManager.getHacks()) {
 				if (hack.getCategory() == category) {
-					ExpandingButton expandingButton = new ExpandingButton(0, 0, frameWidth, 14, frame, hack.GUIName,
+					if(language)
+						name = hack.GUIName;
+					else
+						name = hack.getName();
+					ExpandingButton expandingButton = new ExpandingButton(0, 0, frameWidth, 14, frame, name,
 							hack) {
 						@Override
 						public void onUpdate() {

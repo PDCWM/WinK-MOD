@@ -36,7 +36,7 @@ public class CommandManager
 		commands.add(new Enemy());
 		commands.add(new Toggle());
 		commands.add(new PFilter());
-		commands.add(new OpenDir());
+		commands.add(new Config());
 		commands.add(new XRay());
 		commands.add(new Ai());
 	}

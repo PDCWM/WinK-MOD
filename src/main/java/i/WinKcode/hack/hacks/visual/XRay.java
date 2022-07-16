@@ -2,6 +2,7 @@ package i.WinKcode.hack.hacks.visual;
 
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
+import i.WinKcode.managers.HackManager;
 import i.WinKcode.managers.XRayManager;
 import i.WinKcode.utils.BlockUtils;
 import i.WinKcode.utils.TimerUtils;
@@ -26,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.lwjgl.input.Keyboard;
 
 import java.util.LinkedList;
 import java.util.concurrent.locks.Lock;
@@ -80,6 +82,29 @@ public class XRay extends Hack {
 		sendCount = 0;
 		recvCount = 0;
 		LastBlocks.clear();
+	}
+
+	@Override
+	public void onKeyPressed(int key) {
+		XRay x = (XRay) HackManager.getHack("XRay");
+		if(x.FakeMine.getMode("反假矿扫描").isToggled()){
+			if(key == Keyboard.KEY_Z){
+				if(!x.isXR) {
+					x.onEnable();
+				}else {
+					ChatUtils.warning("还没扫完呐.");
+				}
+			}
+		}/*
+		if(x.FakeMine.getMode("智能模式").isToggled()){
+			if(key == Keyboard.KEY_X) {
+				x.lastPx = (int)Wrapper.INSTANCE.player().posX;
+				x.lastPz = (int)Wrapper.INSTANCE.player().posY;
+				x.XrayAiStart = !x.XrayAiStart;
+			}else if(key == Keyboard.KEY_Z){
+				x.ClearBlock();
+			}
+		}*/
 	}
 
 	@Override

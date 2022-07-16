@@ -7,7 +7,7 @@ import i.WinKcode.wrappers.Wrapper;
 public class DarkTheme extends Theme {
 
     public DarkTheme() {
-        super("GishCodeDark");
+        super("WinKModDark");
         this.fontRenderer = Wrapper.INSTANCE.fontRenderer();
         addRenderer(ComponentType.FRAME, new DarkFrame(this));
         addRenderer(ComponentType.BUTTON, new DarkButton(this));

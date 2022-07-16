@@ -3,18 +3,18 @@ package i.WinKcode.hack.hacks.another;
 import i.WinKcode.hack.Hack;
 import i.WinKcode.hack.HackCategory;
 
-public class GhostMode extends Hack{
+public class HackMode extends Hack{
 	
 	public static boolean enabled = false;
 	
-	public GhostMode() {
-		super("GhostMode", HackCategory.ANOTHER);
+	public HackMode() {
+		super("HackMode", HackCategory.ANOTHER);
 		this.GUIName = "黑客模式";
 	}
 	
 	@Override
 	public String getDescription() {
-		return "禁用所有黑客.";
+		return "禁用所有黑客,绑定按键后生效.";
 	}
 	
 	@Override
