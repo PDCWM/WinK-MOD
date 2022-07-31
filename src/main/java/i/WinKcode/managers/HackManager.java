@@ -107,6 +107,7 @@ public class HackManager {
 		addHack(new Scaffold());
 		addHack(new AutoEat());
 		addHack(new AutoWalk());
+		addHack(new AutoMob());
 
 		// another
 		addHack(new Targets());

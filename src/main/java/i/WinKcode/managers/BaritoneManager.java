@@ -4,6 +4,7 @@ import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.util.math.BlockPos;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,6 +12,7 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BaritoneManager {
     public static boolean isEnable = false;
@@ -19,7 +21,7 @@ public class BaritoneManager {
 
     }
 
-    public void init() {
+    public Object call(String method, Object... args){
         try {
             this.getClass().getClassLoader().loadClass("baritone.api.BaritoneAPI");
             Class.forName("baritone.api.BaritoneAPI");
@@ -27,25 +29,46 @@ public class BaritoneManager {
 
             this.getClass().getClassLoader().loadClass("i.WinKcode.BaritoneFS");
             Class<?> g = Class.forName("i.WinKcode.BaritoneFS");
-            Method method = g.getMethod("status");
-            method.invoke(g);
 
-            /*
-            Class<?> g = Class.forName("baritone.api.pathing.goals.GoalXZ");
-            Constructor<?> cons = g.getConstructor(int.class, int.class);
-            Class<?> cg = (Class<?>) cons.newInstance(1000, 1000);
+            if (Arrays.stream(args).count() == 0){
+                Method m = g.getMethod(method);
+                return m.invoke(g);
+            }
 
-            Class<?> s = BaritoneAPI.getProvider().getPrimaryBaritone().getCustomGoalProcess().getClass();
-            Method method = s.getMethod("setGoalAndPath", Object.class);
-            method.invoke(s, cg);*/
+            if (Arrays.stream(args).count() == 1){
+                Method m = g.getMethod(method, args[0].getClass());
+                return m.invoke(g, args[0]);
+            }
+
+            if (Arrays.stream(args).count() == 2){
+                Method m = g.getMethod(method, args[0].getClass(), args[1].getClass());
+                return m.invoke(g, args[0], args[1]);
+            }
+
+            if (Arrays.stream(args).count() == 3){
+                Method m = g.getMethod(method, args[0].getClass(), args[1].getClass(), args[2].getClass());
+                return m.invoke(g, args[0], args[1], args[2]);
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
             isEnable = false;
         }
+        return null;
+    }
+
+    public void init() {
+        call("status");
+    }
+
+    public void GoalBlock(BlockPos bps) {
+        call("GoalBlock", bps.getX(), bps.getY(), bps.getZ());
     }
 
     public boolean status() {
         init();
+        //GoalBlock(1,1,1);
         if(!isEnable) {
             ChatUtils.error("未检测到BaritoneAPI模块,请在命令窗口输入 ai install 热加载模块.");
         }
