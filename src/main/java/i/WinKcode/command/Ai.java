@@ -1,7 +1,11 @@
 package i.WinKcode.command;
 
 import i.WinKcode.Main;
+import i.WinKcode.hack.hacks.auto.AiCore;
+import i.WinKcode.managers.HackManager;
 import i.WinKcode.utils.visual.ChatUtils;
+import net.minecraft.util.math.BlockPos;
+
 
 public class Ai extends Command
 {
@@ -15,15 +19,24 @@ public class Ai extends Command
 	{
 		try
 		{
-			if(args[0].equalsIgnoreCase("status")) {
-				if(Main.baritoneManager.status()){
-					ChatUtils.message("正常");
-				}
-			}else
-			if(args[0].equalsIgnoreCase("install")) {
-				Main.baritoneManager.install();
-			}else
-			if(args[0].equalsIgnoreCase("uninstall")) {
+			AiCore ac = (AiCore) HackManager.getHack("AutoCore");
+			if(!ac.isToggled()){
+				ChatUtils.warning("需要开启自动核心!");
+				return;
+			}
+
+			if(args[0].equalsIgnoreCase("goto")) {
+				//ChatUtils.message(String.format("X:%s Y:%s Z:%s",
+				//		Wrapper.INSTANCE.player().getPosition().getX(),
+				//		Wrapper.INSTANCE.player().getPosition().getY(),
+				//		Wrapper.INSTANCE.player().getPosition().getZ()));
+				//ChatUtils.message(String.format("X:%s Y:%s Z:%s",args[1],args[2],args[3]));
+				ac.findPath(new BlockPos(Integer.parseInt(args[1]),
+						Integer.parseInt(args[2]),
+						Integer.parseInt(args[3])));
+			}
+
+			if(args[0].equalsIgnoreCase("help")) {
 
 			}
 		}
@@ -37,12 +50,12 @@ public class Ai extends Command
 	@Override
 	public String getDescription()
 	{
-		return "AI人工智能,由BaritoneAPI模块提供.";
+		return "执行AI智能命令.";
 	}
 
 	@Override
 	public String getSyntax()
 	{
-		return "ai <install/uninstall/status>";
+		return "ai goto <x> <y> <z> | stop | help";
 	}
 }

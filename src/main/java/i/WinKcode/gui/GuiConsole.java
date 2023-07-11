@@ -143,12 +143,12 @@ public class GuiConsole extends GuiScreen implements ITabCompleter
 
             if (!s.isEmpty())
             {
+                ChatUtils.message(s);
             	CommandManager.getInstance().runCommands("." + s);
             	if(s.startsWith("login")) {
             		String[] pSplit = s.split(" ");
             		if(pSplit.length >= 3) s = s.replace(pSplit[2], "*");
             	}
-                ChatUtils.message(s);
                 FileManager.saveHacks();
                 this.mc.ingameGUI.getChatGUI().addToSentMessages(s);
             }

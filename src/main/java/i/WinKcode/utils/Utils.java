@@ -703,7 +703,7 @@ public class Utils {
 		Wrapper.INSTANCE.player().rotationPitch = f1;
 	}
 
-	private static boolean weiKeModsIsProning(EntityPlayer ep) {
+	/*private static boolean weiKeModsIsProning(EntityPlayer ep) {
 		try {
 			Main.class.getClassLoader().loadClass("com.vicmatskiv.weaponlib.compatibility.Interceptors");
 			Class<?> g = Class.forName("com.vicmatskiv.weaponlib.compatibility.Interceptors");
@@ -714,7 +714,7 @@ public class Utils {
 			e.printStackTrace();
 		}
 		return true;
-	}
+	}*/
 
 	public static void assistFaceEntity(Entity entity, float yaw, float pitch, boolean type) {
 		if (entity == null) {

@@ -1,10 +1,8 @@
 package i.WinKcode.managers;
 
 import i.WinKcode.gui.click.ClickGuiScreen;
-import i.WinKcode.gui.click.elements.Frame;
 import i.WinKcode.gui.click.theme.dark.DarkTheme;
 import i.WinKcode.hack.Hack;
-import i.WinKcode.hack.HackCategory;
 import i.WinKcode.hack.hacks.TestHack;
 import i.WinKcode.hack.hacks.another.*;
 import i.WinKcode.hack.hacks.auto.*;
@@ -51,7 +49,7 @@ public class HackManager {
 		addHack(new AntiSneak());
 		addHack(new FastBreak());
 		addHack(new FastLadder());
-		addHack(new FastCraftingGUI());
+		//addHack(new FastCraftingGUI());
 		addHack(new RemoteChest());
 		addHack(new AntiHunger());
 		addHack(new Rage());
@@ -99,6 +97,7 @@ public class HackManager {
 		addHack(new Disconnect());
 
 		// auto
+		addHack(new AiCore());
 		addHack(new AutoSprint());
 		addHack(new AutoArmor());
 		addHack(new AutoFish());
@@ -107,7 +106,7 @@ public class HackManager {
 		addHack(new Scaffold());
 		addHack(new AutoEat());
 		addHack(new AutoWalk());
-		addHack(new AutoMob());
+		addHack(new AiMob());
 
 		// another
 		addHack(new Targets());
@@ -206,6 +205,10 @@ public class HackManager {
 	
 	public static void addHack(Hack hack) {
 		hacks.add(hack);
+	}
+
+	public static void removeHack(Hack hack) {
+		hacks.remove(hack);
 	}
 
 	public static ArrayList<Hack> getHacks() {

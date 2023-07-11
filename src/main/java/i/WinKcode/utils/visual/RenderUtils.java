@@ -1,5 +1,6 @@
 package i.WinKcode.utils.visual;
 
+import i.WinKcode.auto.Point;
 import i.WinKcode.hack.hacks.auto.Scaffold;
 import i.WinKcode.hack.hacks.combat.KillAura;
 import i.WinKcode.hack.hacks.visual.ClickGui;
@@ -409,6 +410,37 @@ public class RenderUtils {
         glDisable(GL_LINE_SMOOTH);
         glPopMatrix();
 	}
+
+    public static void drawPath(Point p, float width, float red, float green, float blue, float alpha) {
+        glPushMatrix();
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_LINE_SMOOTH);
+        glDisable(GL_TEXTURE_2D);
+        glEnable(GL_CULL_FACE);
+        glDisable(GL_DEPTH_TEST);
+        glDisable(GL11.GL_LIGHTING);
+        double renderPosX = Wrapper.INSTANCE.mc().getRenderManager().viewerPosX;
+        double renderPosY = Wrapper.INSTANCE.mc().getRenderManager().viewerPosY;
+        double renderPosZ = Wrapper.INSTANCE.mc().getRenderManager().viewerPosZ;
+        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
+
+        glLineWidth(width); // 设置线条宽度
+        glColor4f(red, green, blue, alpha);
+        glBegin(GL_LINES);
+        {
+            glVertex3d(p.parent.getX() + 0.5,p.parent.getY() + 0.5,p.parent.getZ() + 0.5);
+            glVertex3d(p.getX() + 0.5,p.getY() + 0.5,p.getZ() + 0.5);
+        }
+        glEnd();
+
+        glEnable(GL11.GL_LIGHTING);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
+        glPopMatrix();
+    }
 	
 	public static void drawSelectionBoundingBox(AxisAlignedBB boundingBox)
 	{

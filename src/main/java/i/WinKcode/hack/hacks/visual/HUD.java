@@ -45,7 +45,8 @@ public class HUD extends Hack {
 		GL11.glScalef(0.6f, 0.6f, 0.6f);
 		int lastWidth = Wrapper.INSTANCE.fontRenderer().getStringWidth(Main.NAMECN) * 2;
 		//Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.MCVERSION, 84, 4, ClickGui.getColor());
-		Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.VERSION, 18 + lastWidth, 5, ClickGui.getColor());
+		Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.VERSION, 15 + lastWidth, 7, ClickGui.getColor());
+		//Wrapper.INSTANCE.fontRenderer().drawStringWithShadow("193697851", 7 + lastWidth, 10, ClickGui.getColor());
 		GL11.glPopMatrix();
 
 		double x = Wrapper.INSTANCE.player().posX;

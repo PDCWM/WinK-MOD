@@ -4,7 +4,6 @@
  ******************************************************************************/
 package i.WinKcode;
 
-import i.WinKcode.managers.BaritoneManager;
 import i.WinKcode.managers.FileManager;
 import i.WinKcode.managers.HackManager;
 import i.WinKcode.utils.system.Nan0EventRegister;
@@ -14,7 +13,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.lwjgl.opengl.Display;
 
 /**
  * Created by Gish_Reloaded on 23/07/2019.
@@ -26,11 +24,12 @@ public class Main {
 	public static final String MODID = "wink-wm";
 	public static final String NAME = "WinK";
 	public static final String NAMECN = "WinK-Mod";
-	public static final String VERSION = "beta V2";
+	public static final String VERSION = "V2.1";
 	public static final String MCVERSION = "1.12.2";
+	public static String QQ = "";
+	public static String QQ_NAME = "";
 	public static int initCount = 0;
 	public static HackManager hackManager;
-	public static BaritoneManager baritoneManager;
 	public static FileManager fileManager;
 	public static EventsHandler eventsHandler;
 
@@ -50,12 +49,11 @@ public class Main {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent E) {
 		if(initCount > 0) { return; }
-		Display.setTitle(NAME + " " + VERSION);
+		//if(!Wrapper.checkUpdate()){ return; }
 
 		hackManager = new HackManager();
 		fileManager = new FileManager();
 		eventsHandler = new EventsHandler();
-		baritoneManager = new BaritoneManager();
 		Nan0EventRegister.register(MinecraftForge.EVENT_BUS, eventsHandler);
 		Nan0EventRegister.register(FMLCommonHandler.instance().bus(), eventsHandler);
 		initCount++;

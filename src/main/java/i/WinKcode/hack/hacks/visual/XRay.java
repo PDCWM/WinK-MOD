@@ -300,6 +300,12 @@ class XRayHandle implements Runnable{ // 实现Runnable接口，作为线程的�
 				continue;
 			}
 
+			if(XRayManager.xrayList.size() == 0){
+				ChatUtils.warning("方块都不加你让我透什么？");
+				xr.setToggled(false);
+				break;
+			}
+
 			int distance = xr.distance.getValue();
 			if(xr.FakeMine.getMode("简易").isToggled()){
 				DefXr(distance);

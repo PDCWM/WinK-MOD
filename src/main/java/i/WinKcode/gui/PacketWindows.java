@@ -187,7 +187,7 @@ public class PacketWindows extends JFrame{
 
             //if (!json.equals("")){
                 String value = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-                        + ": " + side.toString() + "\r\n" + packet.getClass().toString() + "\r\n"
+                        + ": " + side.toString() + "\r\n" + packet.toString() + "\r\n"
                         + json + "\r\n";
                 appendText(value);
             //}

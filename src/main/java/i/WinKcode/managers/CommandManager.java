@@ -39,6 +39,7 @@ public class CommandManager
 		commands.add(new Config());
 		commands.add(new XRay());
 		commands.add(new Ai());
+		commands.add(new Mode());
 	}
 
 	public void runCommands(String s)

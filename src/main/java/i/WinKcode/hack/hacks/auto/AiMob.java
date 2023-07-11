@@ -11,9 +11,9 @@ import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-public class AutoMob extends Hack {
-    public AutoMob() {
-        super("AutoMob", HackCategory.AUTO);
+public class AiMob extends Hack {
+    public AiMob() {
+        super("AiMob", HackCategory.AUTO);
         this.GUIName = "自动寻怪";
     }
 
@@ -33,9 +33,9 @@ public class AutoMob extends Hack {
         if(LastPos == target.getPosition()) return;
         LastPos = target.getPosition();
         if(target.onGround){
-            Main.baritoneManager.GoalBlock(LastPos);
+            //Main.baritoneManager.GoalBlock(LastPos);
         }else{
-            Main.baritoneManager.GoalBlock(new BlockPos(LastPos.getX(), LastPos.getY() - 1, LastPos.getZ()));
+            //Main.baritoneManager.GoalBlock(new BlockPos(LastPos.getX(), LastPos.getY() - 1, LastPos.getZ()));
         }
 
     }
