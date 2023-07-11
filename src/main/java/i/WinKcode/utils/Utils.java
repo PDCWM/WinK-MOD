@@ -1,10 +1,8 @@
 package i.WinKcode.utils;
 
 import com.mojang.authlib.GameProfile;
-import i.WinKcode.Main;
 import i.WinKcode.managers.EnemyManager;
 import i.WinKcode.utils.system.Mapping;
-import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;

@@ -1,7 +1,6 @@
 package i.WinKcode.gui.click;
 
 import i.WinKcode.gui.Tooltip;
-import i.WinKcode.gui.click.elements.Frame;
 import i.WinKcode.managers.FileManager;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.visual.ChatUtils;
@@ -14,7 +13,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ClickGuiScreen extends GuiScreen {
 

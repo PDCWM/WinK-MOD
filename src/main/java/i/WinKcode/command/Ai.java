@@ -1,6 +1,5 @@
 package i.WinKcode.command;
 
-import i.WinKcode.Main;
 import i.WinKcode.hack.hacks.auto.AiCore;
 import i.WinKcode.managers.HackManager;
 import i.WinKcode.utils.visual.ChatUtils;

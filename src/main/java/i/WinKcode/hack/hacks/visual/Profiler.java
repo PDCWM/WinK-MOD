@@ -7,7 +7,6 @@ import i.WinKcode.managers.FriendManager;
 import i.WinKcode.utils.MathUtils;
 import i.WinKcode.utils.Utils;
 import i.WinKcode.utils.ValidUtils;
-import i.WinKcode.utils.visual.ChatUtils;
 import i.WinKcode.utils.visual.ColorUtils;
 import i.WinKcode.utils.visual.RenderUtils;
 import i.WinKcode.value.types.BooleanValue;
@@ -25,7 +24,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import org.apache.commons.lang3.CharUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

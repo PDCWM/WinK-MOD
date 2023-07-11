@@ -3,13 +3,10 @@ package i.WinKcode.command;
 import i.WinKcode.hack.Hack;
 import i.WinKcode.managers.HackManager;
 import i.WinKcode.utils.visual.ChatUtils;
-import org.lwjgl.Sys;
-import scala.Char;
 
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Locale;
 
 public class Hacks extends Command
 {

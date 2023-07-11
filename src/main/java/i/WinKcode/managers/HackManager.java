@@ -43,6 +43,7 @@ public class HackManager {
 		addHack(new AntiFall());
 		addHack(new Ghost());
 		addHack(new ExpandJump());
+		addHack(new ElytraFly());
 		addHack(new AutoSwim());
 		addHack(new Blink());
 		addHack(new AutoStep());
