@@ -24,7 +24,7 @@ public class AStar {
     public Queue<Point> openList = new ConcurrentLinkedQueue<>();
     public List<Point> closeList = new ArrayList<>();
     //欧拉限制边界线
-    public Queue<Point> boundaryList = new ConcurrentLinkedQueue<>();
+    Queue<Point> boundaryList = new ConcurrentLinkedQueue<>();
 
     //限制搜索方块数量
     public int compute = 2048;
@@ -32,10 +32,16 @@ public class AStar {
     public double Depth = 5.0;
     //跌落距离
     public int dropDistance = 5;
+    //跑酷
+    public Boolean parkour = false;
+    //折线拉直
+    public Boolean straighten = false;
 
 
     //欧拉限制
     double minFCost = 0;
+    //边界线值级
+    //double boundaryMin,boundaryMax = 0;
     //可否vClip
     boolean vClip = false;
     //特殊节点
@@ -165,7 +171,17 @@ public class AStar {
             if (x == endX && y == endY && z == endZ) {
                 //根据节点的父节点返回得到路径
                 List<Point> path = new ArrayList<>();
+
                 do {
+                    //平行折线拉直
+                    if(straighten && node.parent != null && node.parent.parent != null) {
+                        if(node.getX() - node.parent.parent.getX() != 0 && node.getZ() - node.parent.parent.getZ() != 0 &&
+                                node.getY() == node.parent.parent.getY() && node.getType() == 1 &&
+                                node.parent.getType() == 1 && node.parent.parent.getType() == 1){
+                            node.setType(4);
+                            node.parent = node.parent.parent;
+                        }
+                    }
                     path.add(node);
                     node = node.parent;
                 } while (node != null);
@@ -178,14 +194,14 @@ public class AStar {
             closeList.add(node);
 
             //把当前节点的周围子节点添加到开表
-            if (!specialNode) {
-                addToOpenList(x + 1, y, z, node);
-                addToOpenList(x, y + 1, z, node);
-                addToOpenList(x, y, z + 1, node);
-                addToOpenList(x - 1, y, z, node);
-                addToOpenList(x, y - 1, z, node);
-                addToOpenList(x, y, z - 1, node);
-            } else {
+            //if (!specialNode) {
+            //    addToOpenList(x + 1, y, z, node);
+            //    addToOpenList(x, y + 1, z, node);
+            //    addToOpenList(x, y, z + 1, node);
+            //    addToOpenList(x - 1, y, z, node);
+            //    addToOpenList(x, y - 1, z, node);
+            //    addToOpenList(x, y, z - 1, node);
+            //} else {
                 if (reachable(x + 1, y, z, x, y, z)) {
                     addToOpenList(x + 1, y, z, node);
                 }
@@ -204,13 +220,18 @@ public class AStar {
                 if (reachable(x, y, z - 1, x, y, z)) {
                     addToOpenList(x, y, z - 1, node);
                 }
-            }
+            //}
         }
         return null;
     }
 
     //添加节点到开表
     public void addToOpenList(int x,int y,int z,Point parent) {
+        addToOpenList(x,y,z,parent,1);
+    }
+
+    //添加节点到开表
+    public void addToOpenList(int x,int y,int z,Point parent,int type) {
         //XYZ距离
         int xDist = Math.abs(x - endX);
         int yDist = Math.abs(y - endY);
@@ -225,10 +246,10 @@ public class AStar {
         }
         if(fCost < minFCost + Depth) {
             //添加到开表
-            openList.add(new Point(x, y, z, parent, gCost, fCost));
+            openList.add(new Point(x, y, z, parent, gCost, fCost, type));
         }else{
             //添加到边界线
-            boundaryList.add(new Point(x, y, z, parent, gCost, fCost));
+            boundaryList.add(new Point(x, y, z, parent, gCost, fCost, type));
         }
 
         //###曼哈顿距离重塑路线-未定
@@ -244,11 +265,9 @@ public class AStar {
         int y = node.getY();
         int z = node.getZ();
         //检查是否通过
-        if (passable(x, y, z) && passable(x, y + 1, z) && groundPassableEx(x, y - 1, z,node.parent)) {
-            return true;
-        }
+        return passable(x, y, z) && passable(x, y + 1, z) && groundPassableEx(x, y - 1, z, node.parent);
         //如果是特殊方块
-        if (special(x, y, z)) {
+        /*if (special(x, y, z)) {
             //标记为特殊方块
             specialNode = true;
             //得到父节点
@@ -259,37 +278,78 @@ public class AStar {
             int parentZ = parent.getZ();
             //检查是否通过
             return reachable(x, y, z, parentX, parentY, parentZ);
-        }
+        }*/
         //不可通过
-        return false;
     }
 
     //检查位置是否可通过
-    private boolean passable(int x, int y, int z) {
+    public boolean passable(int x, int y, int z) {
         IBlockState blockState = world.getBlockState(mutableBlockPos.setPos(x, y, z));
         Block block = blockState.getBlock();
-        return block.getCollisionBoundingBox(blockState, world, mutableBlockPos) == null && !((block instanceof BlockLiquid || block instanceof BlockStaticLiquid) && block.getMaterial(blockState) != Material.WATER);
+        return (block.getCollisionBoundingBox(blockState, world, mutableBlockPos) == null || special(x,y,z)) &&
+                !((block instanceof BlockLiquid || block instanceof BlockStaticLiquid) && block.getMaterial(blockState) != Material.WATER);
+    }
+
+    private boolean addJumpPath(int x, int y, int z,Point parent){
+        if(!passable(parent.getX(),parent.getY() + 2,parent.getZ())){
+            return false;
+        }
+        if(!passable(x,y - 1,z)){
+            if((Math.abs(parent.getX() - x) == 2 || Math.abs(parent.getZ() - z) == 2) && parent.getY() == y) {
+                addToOpenList(x,y,z,parent,3);
+            }else{
+                addToOpenList(x,y,z,parent,2);
+            }
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //跑酷处理
+    private void parKFun(int x, int y, int z, Point parent){
+        int xDc = x - parent.getX();
+        int zDc = z - parent.getZ();
+        if(xDc == 1){
+            if(addJumpPath(x + 1,y,z,parent)){
+                addJumpPath(x + 2,y,z,parent);
+            }
+        }
+        if(xDc == -1){
+            if(addJumpPath(x - 1,y,z,parent)) {
+                addJumpPath(x - 2, y, z, parent);
+            }
+        }
+        if(zDc == 1){
+            if(addJumpPath(x,y,z + 1,parent)) {
+                addJumpPath(x, y, z + 2, parent);
+            }
+        }
+        if(zDc == -1){
+            if(addJumpPath(x,y,z - 1,parent)) {
+                addJumpPath(x, y, z - 2, parent);
+            }
+        }
     }
 
     //检查位置是否为可通过的地面
     private boolean groundPassable(int x,int y,int z) {
         IBlockState blockState = world.getBlockState(mutableBlockPos.setPos(x, y, z));
         Block block = blockState.getBlock();
-        return !(block instanceof BlockFence || block instanceof BlockWall || block instanceof BlockFenceGate);
+        return !(block instanceof BlockFence || block instanceof BlockWall || block instanceof BlockFenceGate || block instanceof BlockMagma ||
+                ((block instanceof BlockLiquid || block instanceof BlockStaticLiquid) && block.getMaterial(blockState) != Material.WATER));
     }
 
     //检查位置是否为可通过的地面
     private boolean groundPassableEx(int x,int y,int z,Point parent) {
-        IBlockState blockState = world.getBlockState(mutableBlockPos.setPos(x, y, z));
-        Block block = blockState.getBlock();
-        if(block instanceof BlockFence || block instanceof BlockWall || block instanceof BlockFenceGate){
+        if(!groundPassable(x,y,z)) {
             return false;
         }
         // 贴地优化
         int upDown =  y - parent.getY();
         if(passable(x, y, z)){
             //离地判断
-            if(upDown == 0){
+            if(upDown == 0){        //上坡处理
                 if (!passable(x + 1, y, z)) {
                     addToOpenList(x + 1, y + 1, z, parent);
                 }
@@ -305,7 +365,19 @@ public class AStar {
                 return false;
             }
 
+            //下坡处理
             if (!passable(parent.getX(), parent.getY() - 1, parent.getZ()) && -upDown <= dropDistance) {
+                if(parkour) {
+                    parKFun(x, y + 1, z, parent);
+                }
+                addToOpenList(x, y, z, parent);
+            }
+            return false;
+        }
+
+        //特殊方块处理
+        if(special(x, y, z)){
+            if (!passable(x, y - 1, z)) {
                 addToOpenList(x, y, z, parent);
             }
             return false;

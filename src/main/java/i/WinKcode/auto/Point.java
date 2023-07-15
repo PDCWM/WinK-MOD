@@ -10,8 +10,12 @@ public class Point {
     private int y;
     private int z;
     public Point parent;
+    //曼哈顿距离
     private int gcost;
+    //欧拉值
     private double fcost;
+    //节点类型 1走 2跳 3跑 4斜向走位 5放置 6破坏
+    private int type;
 
     public Point(int x, int y, int z) {
         this.x = x;
@@ -19,6 +23,7 @@ public class Point {
         this.z = z;
         this.gcost = 0;
         this.fcost = 0.0f;
+        this.type = 1;
     }
 
     public Point(int x, int y, int z,Point parent, int gcost, double fcost) {
@@ -28,7 +33,20 @@ public class Point {
         this.parent = parent;
         this.gcost = gcost;
         this.fcost = fcost;
+        this.type = 1;
     }
+
+    public Point(int x, int y, int z,Point parent, int gcost, double fcost,int type) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.parent = parent;
+        this.gcost = gcost;
+        this.fcost = fcost;
+        this.type = type;
+    }
+
+    public void setType(int type) { this.type = type; }
 
     public void setX(int x) {
         this.x = x;
@@ -41,6 +59,8 @@ public class Point {
     public void setZ(int z) {
         this.z = z;
     }
+
+    public int getType() { return type; }
 
     public int getGcost() {
         return gcost;

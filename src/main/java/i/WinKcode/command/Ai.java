@@ -18,8 +18,8 @@ public class Ai extends Command
 	{
 		try
 		{
-			AiCore ac = (AiCore) HackManager.getHack("AutoCore");
-			if(!ac.isToggled()){
+			AiCore ac = (AiCore) HackManager.getHack("AiCore");
+			if(ac==null || !ac.isToggled()){
 				ChatUtils.warning("需要开启自动核心!");
 				return;
 			}
