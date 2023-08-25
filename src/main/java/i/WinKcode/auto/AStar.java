@@ -34,8 +34,14 @@ public class AStar {
     public int dropDistance = 5;
     //跑酷
     public Boolean parkour = false;
+    //跑酷进阶
+    public Boolean parkourAdvanced = false;
     //折线拉直
     public Boolean straighten = false;
+    //允许建造
+    public Boolean allowPlace = false;
+    //允许破坏
+    public Boolean allowDestruction = false;
 
 
     //欧拉限制
@@ -84,20 +90,58 @@ public class AStar {
             return null;
         }
         ChatUtils.warning("开始");
-        List<Point> retList = null;
+        //起点XYZ坐标
+        startX = start.getX();
+        startY = start.getY();
+        startZ = start.getZ();
+        //终点XYZ
+        endX = end.getX();
+        endY = end.getY();
+        endZ = end.getZ();
 
-        retList = aStar(start,end);
+        //把起点添加到开表
+        openList.add(new Point(startX, startY, startZ, new Point(startX, startY, startZ, null, 0, 0), 0, 0));
+
+        List<Point> retList = null;
+        retList = aStar();
         while (closeList.size() < compute && boundaryList.size() > 0 && retList == null){
             //路线-欧拉边界路线扩展
+            double lastMinFCost = minFCost;
             minFCost = 0;
+            //是否带入自建路线
+            int lastPlaceCount = 0;
             while (boundaryList.size() > 0){
-                openList.add(boundaryList.poll());
+                Point p = boundaryList.poll();
+                openList.add(p);
             }
 
             //路线-自建路线扩展
+            if(allowPlace || allowDestruction){
+                for (int i = 0;i < closeList.size();i++){
+                    Point p = closeList.get(i);
+                    if(p.getFcost() < lastMinFCost + Depth){
+                        //自建搭建路线
+                        if(allowPlace){
+                            //closeList.add(p);
+                            if(lastPlaceCount++ < Depth){
+                                toPlace(p,true);
+                            }else{
+                                toPlace(p);
+                            }
+                        }
+                        //自建挖掘路线
+                        /*if(allowDestruction){
+                            if(lastPlaceCount++ < Depth){
+                                toPlace(p,true);
+                            }else{
+                                toPlace(p);
+                            }
+                        }*/
+                    }
+                }
+            }
 
-
-            retList = aStar(start,end);
+            retList = aStar();
             if(retList != null){
                 return retList;
             }
@@ -110,22 +154,8 @@ public class AStar {
      * =============================
      *  寻路算法使用A*  权重偏预估距离
      * =============================
-     */
-    public List<Point> aStar(BlockPos start, BlockPos end) {
-        //起点XYZ坐标
-        startX = start.getX();
-        startY = start.getY();
-        startZ = start.getZ();
-        //终点XYZ
-        endX = end.getX();
-        endY = end.getY();
-        endZ = end.getZ();
-
-        //初始化
-        //把起点添加到开表
-        openList.add(new Point(startX, startY, startZ, new Point(startX, startY, startZ, null, 0, 0), 0, 0));
-
-        //循环寻路
+     *///循环寻路
+    public List<Point> aStar() {
         while (openList.size() != 0 && closeList.size() < compute) {
             //出队一个节点
             Point node = openList.poll();
@@ -140,30 +170,6 @@ public class AStar {
 
             //在闭表
             if (closeList.contains(node)) {
-                continue;
-            }
-
-            //不可通过
-            if (!checkNode(node)) {
-                //尝试vClip
-                if (vClip) {
-                    //如果是根节点
-                    Point parent = node.parent;
-                    if (parent == null) {
-                        continue;
-                    }
-                    //位置
-                    int parentX = parent.getX();
-                    int parentY = parent.getY();
-                    int parentZ = parent.getZ();
-                    //如果有阻挡才尝试
-                    if (!check(parentX, parentY + 1, parentZ)) {
-                        upVClip(parentX, parentY, parentZ, parent);
-                    }
-                    if (!check(parentX, parentY - 1, parentZ)) {
-                        downVClip(parentX, parentY, parentZ, parent);
-                    }
-                }
                 continue;
             }
 
@@ -188,6 +194,36 @@ public class AStar {
                 path.remove(path.size() - 1);
                 //返回路径
                 return path;
+            }
+
+            if(node.getType() == 5 && node.getX() == endX && node.getZ() == endZ && node.getY() > endY + dropDistance){
+                boundaryList.clear();
+                ChatUtils.warning("已找到终点但不可到达");
+                return null;
+            }
+
+            //不可通过
+            if (!checkNode(node)) {
+                //尝试vClip
+                if (vClip) {
+                    //如果是根节点
+                    Point parent = node.parent;
+                    if (parent == null) {
+                        continue;
+                    }
+                    //位置
+                    int parentX = parent.getX();
+                    int parentY = parent.getY();
+                    int parentZ = parent.getZ();
+                    //如果有阻挡才尝试
+                    if (!check(parentX, parentY + 1, parentZ)) {
+                        upVClip(parentX, parentY, parentZ, parent);
+                    }
+                    if (!check(parentX, parentY - 1, parentZ)) {
+                        downVClip(parentX, parentY, parentZ, parent);
+                    }
+                }
+                continue;
             }
 
             //添加到闭表
@@ -232,14 +268,10 @@ public class AStar {
 
     //添加节点到开表
     public void addToOpenList(int x,int y,int z,Point parent,int type) {
-        //XYZ距离
-        int xDist = Math.abs(x - endX);
-        int yDist = Math.abs(y - endY);
-        int zDist = Math.abs(z - endZ);
         //当前代价 【据地形影响移动速度判定值-未定
-        int gCost = parent.getGcost() + 1;
+        float gCost = getToGCost(parent.getGcost(),type);
         //总代价，这里使用曼哈顿距离和欧拉距离
-        double fCost = gCost + xDist + yDist + zDist + Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist);
+        double fCost = getToFCost(x,y,z,parent.getGcost(),type);
         //欧拉贪婪限制
         if(minFCost > fCost || minFCost == 0) {
             minFCost = fCost;
@@ -251,8 +283,26 @@ public class AStar {
             //添加到边界线
             boundaryList.add(new Point(x, y, z, parent, gCost, fCost, type));
         }
+    }
 
-        //###曼哈顿距离重塑路线-未定
+    public float getToGCost(float parentGCost,int type){
+        //###曼哈顿距离重塑路线
+        float gCost = parentGCost + 1;
+        if(type == 5){
+            gCost += 1;
+        }
+        return gCost;
+    }
+
+    public double getToFCost(int x,int y,int z,float parentGCost,int type){
+        //XYZ距离
+        int xDist = Math.abs(x - endX);
+        int yDist = Math.abs(y - endY);
+        int zDist = Math.abs(z - endZ);
+        //当前代价 【据地形影响移动速度判定值-未定
+        float gCost = getToGCost(parentGCost,type);
+        //总代价，这里使用曼哈顿距离和欧拉距离
+        return gCost + xDist + yDist + zDist + Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist);
     }
 
     private boolean check(int x, int y, int z) {
@@ -265,7 +315,7 @@ public class AStar {
         int y = node.getY();
         int z = node.getZ();
         //检查是否通过
-        return passable(x, y, z) && passable(x, y + 1, z) && groundPassableEx(x, y - 1, z, node.parent);
+        return passable(x, y, z) && passable(x, y + 1, z) && groundPassableEx(x, y - 1, z, node);
         //如果是特殊方块
         /*if (special(x, y, z)) {
             //标记为特殊方块
@@ -282,6 +332,15 @@ public class AStar {
         //不可通过
     }
 
+    //判断是否为可破坏方块
+    public boolean isDestructionBlock(int x, int y, int z){
+        if(passable(x,y,z)){
+           return false;
+        }
+        IBlockState blockState = world.getBlockState(mutableBlockPos.setPos(x, y, z));
+        return Block.getStateId(blockState) != 7;
+    }
+
     //检查位置是否可通过
     public boolean passable(int x, int y, int z) {
         IBlockState blockState = world.getBlockState(mutableBlockPos.setPos(x, y, z));
@@ -295,7 +354,7 @@ public class AStar {
             return false;
         }
         if(!passable(x,y - 1,z)){
-            if((Math.abs(parent.getX() - x) == 2 || Math.abs(parent.getZ() - z) == 2) && parent.getY() == y) {
+            if(parkourAdvanced && (Math.abs(parent.getX() - x) == 2 || Math.abs(parent.getZ() - z) == 2) && parent.getY() == y) {
                 addToOpenList(x,y,z,parent,3);
             }else{
                 addToOpenList(x,y,z,parent,2);
@@ -341,10 +400,27 @@ public class AStar {
     }
 
     //检查位置是否为可通过的地面
-    private boolean groundPassableEx(int x,int y,int z,Point parent) {
+    private boolean groundPassableEx(int x,int y,int z,Point node) {
         if(!groundPassable(x,y,z)) {
+            //搭建绕路路线处理 - 防止极致贪婪模式钻牛角尖
+            if(node.parent.getType() == 5){
+                //返回上一格并临时取消极致贪婪
+                toPlace(node.parent, true);
+            }
             return false;
         }
+        if(world.getBlockState(mutableBlockPos.setPos(x,y,z)).getMaterial() == Material.WATER) {
+            node.setGcost(node.getGcost() + 0.5f);
+            return true;
+        }
+
+        //搭建路线处理
+        if(node.getType() == 5){
+            closeList.add(node);
+            return toPlace(node);
+        }
+
+        Point parent = node.parent;
         // 贴地优化
         int upDown =  y - parent.getY();
         if(passable(x, y, z)){
@@ -384,6 +460,123 @@ public class AStar {
         }
         return true;
     }
+
+    private double toPlaceRepeat(boolean isAll, int x, int y, int z, double fCost, Point p,int type){
+        if(isAll){
+            addToOpenList(x, y, z, p,type);
+            return 0;
+        }else{
+            double thisFCost = getToFCost(x, y, z, p.getGcost(),type);
+            if(fCost == 0 || thisFCost < fCost){
+                return thisFCost;
+            }
+        }
+        return 0;
+    }
+
+    //搭建路线
+    private boolean toPlace(Point p){ return toPlace(p,false); }
+    private boolean toPlace(Point p,boolean isAll){
+        int x = p.getX();
+        int y = p.getY();
+        int z = p.getZ();
+
+        if(p.parent.getType() == 5 && p.getY() - p.parent.getY() == 0){
+            if(groundPassable(x, y - 1, z)){
+                p.setType(1);
+                return true;
+            }
+            for (int i=2;i <= dropDistance; i++){
+                if(groundPassable(x, y - i, z)){
+                    addToOpenList(x, y - i + 1, z, p.parent);
+                    return true;
+                }
+            }
+        }
+        double fCost = 0;int tx = 0;int ty = 0;int tz = 0;
+        //优化-只择一近点
+        if (passable(x, y + 1, z) && passable(x, y + 2, z)) {
+            double thisFCost = toPlaceRepeat(isAll, x, y + 1, z, fCost ,p,5);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x;ty = y + 1;tz = z;
+            }
+        }
+        if (passable(x + 1, y, z) && passable(x + 1, y + 1, z)) {
+            double thisFCost = toPlaceRepeat(isAll, x + 1, y, z, fCost ,p,5);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x + 1;ty = y;tz = z;
+            }
+        }
+        if (passable(x, y, z + 1) && passable(x, y + 1, z + 1)) {
+            double thisFCost = toPlaceRepeat(isAll, x, y, z + 1, fCost ,p,5);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x;ty = y;tz = z + 1;
+            }
+        }
+        if (passable(x - 1, y, z) && passable(x - 1, y + 1, z)) {
+            double thisFCost = toPlaceRepeat(isAll, x - 1, y, z, fCost ,p,5);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x - 1;ty = y;tz = z;
+            }
+        }
+        if (passable(x, y, z - 1) && passable(x, y + 1, z - 1)) {
+            double thisFCost = toPlaceRepeat(isAll, x, y, z - 1, fCost ,p,5);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x;ty = y;tz = z - 1;
+            }
+        }
+        if(fCost != 0){
+            addToOpenList(tx,ty,tz,p,5);
+        }
+        return false;
+    }
+
+    //破坏路线
+    private boolean toDestruction(Point p){ return toPlace(p,false); }
+    private boolean toDestruction(Point p,boolean isAll){
+        int x = p.getX();
+        int y = p.getY();
+        int z = p.getZ();
+
+        double fCost = 0;int tx = 0;int ty = 0;int tz = 0;
+        //优化-只择一近点
+        if (passable(x, y + 1, z) && passable(x, y + 2, z)) {
+            double thisFCost = toPlaceRepeat(isAll, x, y + 1, z, fCost ,p,6);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x;ty = y + 1;tz = z;
+            }
+        }
+        if (passable(x + 1, y, z) && passable(x + 1, y + 1, z)) {
+            double thisFCost = toPlaceRepeat(isAll, x + 1, y, z, fCost ,p,6);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x + 1;ty = y;tz = z;
+            }
+        }
+        if (passable(x, y, z + 1) && passable(x, y + 1, z + 1)) {
+            double thisFCost = toPlaceRepeat(isAll, x, y, z + 1, fCost ,p,6);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x;ty = y;tz = z + 1;
+            }
+        }
+        if (passable(x - 1, y, z) && passable(x - 1, y + 1, z)) {
+            double thisFCost = toPlaceRepeat(isAll, x - 1, y, z, fCost ,p,6);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x - 1;ty = y;tz = z;
+            }
+        }
+        if (passable(x, y, z - 1) && passable(x, y + 1, z - 1)) {
+            double thisFCost = toPlaceRepeat(isAll, x, y, z - 1, fCost ,p,6);
+            if(thisFCost != 0) {
+                fCost = thisFCost;tx = x;ty = y;tz = z - 1;
+            }
+        }
+        if(fCost != 0){
+            addToOpenList(tx,ty,tz,p,6);
+        }
+        return false;
+    }
+
+
 
     //检查位置是否为特殊方块
     private boolean special(int x,int y,int z) {
@@ -474,7 +667,7 @@ public class AStar {
                 int xDist = Math.abs(x - endX);
                 int yDist = Math.abs(finalY - endY);
                 int zDist = Math.abs(z - endZ);
-                int gCost = parent.getGcost() + Math.abs(finalY - y);
+                float gCost = parent.getGcost() + Math.abs(finalY - y);
                 double fCost = gCost + xDist + yDist + zDist + Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist);
 
             //添加到节点列表
@@ -500,7 +693,7 @@ public class AStar {
                 int xDist = Math.abs(x - endX);
                 int yDist = Math.abs(finalY - endY);
                 int zDist = Math.abs(z - endZ);
-                int gCost = parent.getGcost() + Math.abs(finalY - y);
+                float gCost = parent.getGcost() + Math.abs(finalY - y);
                 double fCost = gCost + xDist + yDist + zDist + Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist);
             //添加到节点列表
             openList.add(new Point(x, finalY, z, parent, gCost, fCost));

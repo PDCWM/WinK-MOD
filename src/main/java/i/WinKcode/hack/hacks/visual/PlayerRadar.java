@@ -24,7 +24,7 @@ public class PlayerRadar extends Hack {
 
 	@Override
 	public void onRenderGameOverlay(Text event) {
-		int y = Wrapper.INSTANCE.player().getActivePotionEffects().size() > 0 ? 28 : 2;
+		int y = Wrapper.INSTANCE.player().getActivePotionEffects().size() > 0 ? 50 : 25;
 		ScaledResolution sr = new ScaledResolution(Wrapper.INSTANCE.mc());
 
 		for (EntityPlayer e : Utils.getPlayersList()) {

@@ -10,6 +10,7 @@ import i.WinKcode.xray.XRayBlock;
 import i.WinKcode.xray.XRayData;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -80,6 +81,17 @@ public class RenderUtils {
 			}
 		}
 	}
+
+    public static int drawSplashPos(int xPos) {
+        ScaledResolution sr = new ScaledResolution(Wrapper.INSTANCE.mc());
+        int retI;
+        if(splashTimer.isDelay(10)) {
+            splashTimer.setLastMS();
+            splashTickPos++;
+        }
+        retI = ((sr.getScaledWidth() / 3) - (splashTickPos * splashTickPos));
+        return Math.max(retI, xPos);
+    }
 
     public static void drawBorderedWM(double x, double y, double x2, double y2, float l1, int col1, int col2, int type) {
         drawRect((int)x, (int)y, (int)x2, (int)y2, col2);

@@ -61,7 +61,7 @@ public class XRay extends Hack {
 		distance = new IntegerValue("距离", 80, 4, 100);
 		delay = new IntegerValue("更新延迟", 150, 0, 300);
 
-		new String("别翻了,没加密. ！！说的就是你！！ 团队扩招中,有兴趣一起交流学习,加我时记得写备注哦,QQ:1601152156");
+		new String("别翻了 ！！说的就是你！！ 团队扩招中,有兴趣一起交流学习,加我时记得写备注,QQ:1601152156");
 
 		this.addValue(FakeMine, distance, delay);
 	}

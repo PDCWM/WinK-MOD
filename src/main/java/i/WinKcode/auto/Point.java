@@ -11,10 +11,10 @@ public class Point {
     private int z;
     public Point parent;
     //曼哈顿距离
-    private int gcost;
+    private float gcost;
     //欧拉值
     private double fcost;
-    //节点类型 1走 2跳 3跑 4斜向走位 5放置 6破坏
+    //节点类型 1走 2跳 3跑 4斜向走位 5放置 6破坏 7破坏&放置
     private int type;
 
     public Point(int x, int y, int z) {
@@ -26,7 +26,7 @@ public class Point {
         this.type = 1;
     }
 
-    public Point(int x, int y, int z,Point parent, int gcost, double fcost) {
+    public Point(int x, int y, int z,Point parent, float gcost, double fcost) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -36,7 +36,7 @@ public class Point {
         this.type = 1;
     }
 
-    public Point(int x, int y, int z,Point parent, int gcost, double fcost,int type) {
+    public Point(int x, int y, int z,Point parent, float gcost, double fcost,int type) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -62,12 +62,20 @@ public class Point {
 
     public int getType() { return type; }
 
-    public int getGcost() {
+    public float getGcost() {
         return gcost;
     }
 
     public double getFcost() {
         return fcost;
+    }
+
+    public void setGcost(float gCost) {
+        this.gcost = gCost;
+    }
+
+    public void setFcost(float fCost) {
+        this.fcost = fCost;
     }
 
     public int getX() {

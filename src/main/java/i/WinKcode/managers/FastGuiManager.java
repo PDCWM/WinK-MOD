@@ -30,12 +30,12 @@ public class FastGuiManager {
         if(category == HackCategory.AUTO) name = "自动化";
         if(category == HackCategory.ANOTHER) name = "其他";
 
-        RenderUtils.drawCenterStringWithRect("\u00a77:)\u00a7f" + name, 4, 26, 80, 10,
+        RenderUtils.drawCenterStringWithRect("\u00a77:)\u00a7f" + name, 4, 4, 80, 10,
                 ClickGui.getColor(), ColorUtils.color(0.0F, 0.0F, 0.0F, 0.0F), ClickGui.getColor(), 0);
 
         TConut = 0;
         THack = null;
-        int y = 40;
+        int y = 18;
 
         for(final Hack hack : HackManager.getHacks()){
             if(hack.getCategory() == category){
@@ -88,7 +88,7 @@ public class FastGuiManager {
     public static void downItem(){
         if (!isFash) {
             TSelect += 1;
-            if (TSelect >= TConut) {
+            if (TSelect > TConut) {
                 TSelect = 1;
             }
         }
@@ -101,6 +101,8 @@ public class FastGuiManager {
         }else if(category == HackCategory.VISUAL) {
             category = HackCategory.COMBAT;
         }else if(category == HackCategory.COMBAT) {
+            category = HackCategory.AUTO;
+        }else if(category == HackCategory.AUTO) {
             category = HackCategory.ANOTHER;
         }else if(category == HackCategory.ANOTHER){
             category = HackCategory.PLAYER;

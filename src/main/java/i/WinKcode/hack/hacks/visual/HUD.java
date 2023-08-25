@@ -14,8 +14,13 @@ import i.WinKcode.value.types.ModeValue;
 import i.WinKcode.wrappers.Wrapper;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Text;
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HUD extends Hack {
 	
@@ -39,15 +44,6 @@ public class HUD extends Hack {
 	@Override
 	public void onRenderGameOverlay(Text event) {
 		//if(Wrapper.INSTANCE.mc().getLanguageManager().getCurrentLanguage() == Wrapper.INSTANCE.mc().getLanguageManager().getLanguage("ru_ru")) {}
-		GL11.glPushMatrix();
-		GL11.glScalef(2.0f, 2.0f, 2.0f);
-		Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.NAMECN, 15, 2, ClickGui.getColor());
-		GL11.glScalef(0.6f, 0.6f, 0.6f);
-		int lastWidth = Wrapper.INSTANCE.fontRenderer().getStringWidth(Main.NAMECN) * 2;
-		//Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.MCVERSION, 84, 4, ClickGui.getColor());
-		Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.VERSION, 15 + lastWidth, 7, ClickGui.getColor());
-		//Wrapper.INSTANCE.fontRenderer().drawStringWithShadow("193697851", 7 + lastWidth, 10, ClickGui.getColor());
-		GL11.glPopMatrix();
 
 		double x = Wrapper.INSTANCE.player().posX;
 		double y = Wrapper.INSTANCE.player().posY;
@@ -59,18 +55,31 @@ public class HUD extends Hack {
 		
 		int heightFPS = isChatOpen ? sr.getScaledHeight() - 37 : sr.getScaledHeight() - 24;
 		int heightCoords = isChatOpen ? sr.getScaledHeight() - 25 : sr.getScaledHeight() - 12;
-		
+		int heightLogo = Wrapper.INSTANCE.player().getActivePotionEffects().size() > 0 ? 24 : 0;
+
 		int colorRect = ColorUtils.color(0.0F, 0.0F, 0.0F, 0.0F);
 		int colorRect2 = ColorUtils.color(0.0F, 0.0F, 0.0F, 0.5F);
+
+		GL11.glPushMatrix();
+		GlStateManager.translate(sr.getScaledWidth() - 63,heightLogo,0);
+		GL11.glScalef(2.0f, 2.0f, 2.0f);
+		Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.NAMECN,  0, 0, ClickGui.getColor());
+		//int lastWidth = Wrapper.INSTANCE.fontRenderer().getStringWidth(Main.NAMECN) * 2;
+		//Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.MCVERSION, 84, 4, ClickGui.getColor());
+		GL11.glScalef(0.5f, 0.5f, 0.5f);
+		Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.VERSION + "  Q:193697851", 0,  15, ClickGui.getColor());
+		//Wrapper.INSTANCE.fontRenderer().drawStringWithShadow("193697851", 7 + lastWidth, 10, ClickGui.getColor());
+		GL11.glPopMatrix();
 		
 		RenderUtils.drawStringWithRect(coords, 4, heightCoords, ClickGui.getColor(), 
 				colorRect, colorRect2);
 		
 		RenderUtils.drawStringWithRect("\u00a77FPS: \u00a7f" + Wrapper.INSTANCE.mc().getDebugFPS(), 4, heightFPS, ClickGui.getColor(), 
 				colorRect, colorRect2);
-		
-		int yPos = 26;
-		int xPos;
+
+		// 显示功能列表
+		List<String> nameList = new ArrayList();
+		String toggleHack = "";
 		for(Hack hack : HackManager.getSortedHacks()) {
 			String modeName = "";
 			for(Value value : hack.getValues()) {
@@ -85,38 +94,69 @@ public class HUD extends Hack {
 					}
 				}
 			}
-
 			String name = hack.GUIName;
 			if(!i.WinKcode.hack.hacks.visual.ClickGui.language.getMode("中文").isToggled()) {
 				name = hack.getName();
 			}
+			nameList.add(name + modeName);
+			if(HackManager.getToggleHack() == hack){
+				toggleHack = name + modeName;
+			}
+		}
+
+		//冒泡排序
+		while (true){
+			boolean isT = true;
+			for (int i=0;i < nameList.size(); i++){
+				if(i + 1 < nameList.size()){
+					if(Wrapper.INSTANCE.fontRenderer().getStringWidth(nameList.get(i)) < Wrapper.INSTANCE.fontRenderer().getStringWidth(nameList.get(i + 1))){
+						String th = nameList.get(i);
+						nameList.set(i,nameList.get(i + 1));
+						nameList.set(i + 1,th);
+						isT = false;
+					}
+				}
+			}
+			if (isT){
+				break;
+			}
+		}
+
+		int yPos = 4;
+		int xPos;
+		for(String str : nameList) {
 			xPos = 0;
 			if(HackManager.getHack("FastGUI").isToggled()){
 				xPos = 86;
 			}
+			if(toggleHack.equals(str)){
+				xPos = RenderUtils.drawSplashPos(xPos);
+			}
 			if(effects.getValue()) {
 				xPos += 6;
-				RenderUtils.drawBorderedRect(xPos - 2, yPos - 2, xPos + Wrapper.INSTANCE.fontRenderer().getStringWidth(name + modeName) + 2, yPos + 10, 1, colorRect, ClickGui.getColor());
+				RenderUtils.drawBorderedRect(xPos - 2, yPos - 2, xPos + Wrapper.INSTANCE.fontRenderer().getStringWidth(str) + 2, yPos + 10, 1, colorRect, ClickGui.getColor());
 			} else {
 				xPos += 4;
 			}
-			RenderUtils.drawStringWithRect(name + modeName, xPos, yPos, ClickGui.getColor(),
-					colorRect, colorRect2);
 			if(effects.getValue()) {
 				RenderUtils.drawBorderedRect(xPos - 2, yPos - 2, xPos - 6, yPos + 10, 1, ClickGui.getColor(), ClickGui.getColor());
 			}
+			RenderUtils.drawStringWithRect(str, xPos, yPos, ClickGui.getColor(), colorRect, colorRect2);
 			yPos += 12;
 		}
 
+		GL11.glPushMatrix();
+		GlStateManager.translate(sr.getScaledWidth() - 88,heightLogo + 1,0);
 		RenderUtils.drawImage(getClass().getClassLoader().getResource("assets/awwgx-yfgux.png"),
-				2,24,24,2);
+				0,22,22,0);
+		GL11.glPopMatrix();
 
-		Hack toggleHack = HackManager.getToggleHack();
+		/*Hack toggleHack = HackManager.getToggleHack();
 		if(toggleHack != null) {
 			RenderUtils.drawSplash(toggleHack.isToggled()  ? 
 					toggleHack.GUIName + " - 开启" :
 						 "\u00a77" + toggleHack.GUIName + " - 关闭");
-		}
+		}*/
 		super.onRenderGameOverlay(event);
 	}
 }
