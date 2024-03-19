@@ -61,7 +61,7 @@ public class HUD extends Hack {
 		int colorRect2 = ColorUtils.color(0.0F, 0.0F, 0.0F, 0.5F);
 
 		GL11.glPushMatrix();
-		GlStateManager.translate(sr.getScaledWidth() - 63,heightLogo,0);
+		GlStateManager.translate((sr.getScaledWidth() / 2) - 32,heightLogo,0);
 		GL11.glScalef(2.0f, 2.0f, 2.0f);
 		Wrapper.INSTANCE.fontRenderer().drawStringWithShadow(Main.NAMECN,  0, 0, ClickGui.getColor());
 		//int lastWidth = Wrapper.INSTANCE.fontRenderer().getStringWidth(Main.NAMECN) * 2;
@@ -146,7 +146,7 @@ public class HUD extends Hack {
 		}
 
 		GL11.glPushMatrix();
-		GlStateManager.translate(sr.getScaledWidth() - 88,heightLogo + 1,0);
+		GlStateManager.translate((sr.getScaledWidth() / 2) - 58,heightLogo + 1,0);
 		RenderUtils.drawImage(getClass().getClassLoader().getResource("assets/awwgx-yfgux.png"),
 				0,22,22,0);
 		GL11.glPopMatrix();
